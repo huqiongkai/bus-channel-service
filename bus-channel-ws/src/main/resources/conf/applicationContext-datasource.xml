@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	">
+
+	<bean id="stockORADataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${c3p0.orcl.driverClass}" />
+		<property name="jdbcUrl" value="${c3p0.orcl.jdbcUrl}" />
+		<property name="user" value="${c3p0.orcl.user}" />
+		<property name="password" value="${c3p0.orcl.password}" />
+		<property name="initialPoolSize" value="${c3p0.orcl.initialPoolSize}" />
+		<property name="minPoolSize" value="${c3p0.orcl.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.orcl.maxPoolSize}" />
+		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="${c3p0.orcl.maxIdleTime}" />
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement" value="${c3p0.orcl.acquireIncrement}" />
+		<property name="maxStatementsPerConnection" value="${c3p0.orcl.maxStatementsPerConnection}" />
+		<!-- <property name="maxStatements" value="1000" /> -->
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod" value="${c3p0.orcl.idleConnectionTestPeriod}" />
+		<property name="preferredTestQuery" value="${c3p0.orcl.preferredTestQuery}" />
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<!-- <property name="acquireRetryAttempts" value="${c3p0.orcl.acquireRetryAttempts}" /> -->
+		<!-- <property name="breakAfterAcquireFailure" value="true" /> -->
+		<property name="testConnectionOnCheckout" value="${c3p0.orcl.testConnectionOnCheckout}" />
+		<!-- <property name="autoCommitOnClose" value="true"/> -->
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="stockORADataSource" />
+        <property name="configLocation" value="classpath:conf/mybatis-config.xml" />
+    </bean>
+     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="tSysChinaRegionDao" class="com.shbus.easybus.data.dao.TSysChinaRegionDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+    <bean id="tSysChannelDao" class="com.shbus.easybus.data.dao.TSysChannelDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="tInterfaceAccountDao" class="com.shbus.easybus.data.dao.TInterfaceAccountDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<bean id="tExBusOrderDao" class="com.shbus.easybus.data.dao.TExBusOrderDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+	<!-- for dao test only -->
+	<!-- <bean id="tInterfaceAccountTempDao" class="com.shbus.easybus.oracle.TInterfaceAccountTempDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean> -->
+	
+    <!-- <bean name="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="stockORADataSource"></property>
+    </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="insert*" />
+            <tx:method name="update*" />
+        </tx:attributes>
+    </tx:advice>
+
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* com.shbus.easybus.data.dao.TExBusOrderMapper.insert*(..))
+						or execution(* com.shbus.easybus.data.dao.TExBusOrderMapper.update*(..))"
+			id="busOrderDaoOperation" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="busOrderDaoOperation" />
+	</aop:config> -->
+
+</beans>

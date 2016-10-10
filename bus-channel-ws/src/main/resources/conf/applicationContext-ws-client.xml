@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+						http://cxf.apache.org/jaxws
+                        http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<bean id="sandClientPasswordCallback" class="com.shbus.easybus.service.sand.SandClientPasswordCallback">
+		<property name="username" value="${sandws_wss4j_user}"/>
+		<property name="password" value="${sandws_wss4j_password}"/>
+	</bean>
+
+	<jaxws:client id="sandWsClient" address="${sandws_wsdl_location}"
+			serviceClass="com.shbus.easybus.IJyBusTicketService">  
+        <jaxws:outInterceptors>  
+            <!-- <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" /> -->  
+            <!-- SAAJInInterceptor只在CXF是2.0.X版本时或之前版本时才是必须的 -->  
+            <!-- <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/> -->  
+            <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">  
+                <constructor-arg>  
+                    <map>  
+                        <entry key="action" value="UsernameToken" />  
+                        <entry key="passwordType" value="PasswordText" />  
+                        <entry key="user" value="SandClient" />  
+                        <entry key="passwordCallbackRef">
+                            <ref bean="sandClientPasswordCallback" />  
+                        </entry>  
+                    </map>  
+                </constructor-arg>  
+            </bean>  
+        </jaxws:outInterceptors>  
+    </jaxws:client> 
+    
+</beans>

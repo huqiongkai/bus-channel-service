@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shbus.easybus.data.model.dao.TSysChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.shbus.easybus.data.model.TSysChannel" >
+    <id column="CHANNEL_ID" property="channelId" jdbcType="DECIMAL" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="CHANNEL_TYPE" property="channelType" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATETIME" property="modifyDatetime" jdbcType="TIMESTAMP" />
+    <result column="LAST_OP_ID" property="lastOpId" jdbcType="DECIMAL" />
+    <result column="VALID" property="valid" jdbcType="CHAR" />
+    <result column="SUPPLIERINFO_ID" property="supplierinfoId" jdbcType="VARCHAR" />
+    <result column="CHANNEL_LEVEL" property="channelLevel" jdbcType="DECIMAL" />
+    <result column="CHANNEL_CITY_CODE" property="channelCityCode" jdbcType="VARCHAR" />
+    <result column="CHANNEL_PROVINCE_CODE" property="channelProvinceCode" jdbcType="VARCHAR" />
+    <result column="MSG_NOTIFY_ADDR" property="msgNotifyAddr" jdbcType="VARCHAR" />
+    <result column="SELF_SIGN_CONTRACT" property="selfSignContract" jdbcType="CHAR" />
+    <result column="CHANNEL_SALE_DEPTMENT" property="channelSaleDeptment" jdbcType="VARCHAR" />
+    <result column="CHANNEL_SALE_DEPTMENT_ID" property="channelSaleDeptmentId" jdbcType="DECIMAL" />
+    <result column="OLD_SYS_CHANNEL_ID" property="oldSysChannelId" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="U_TREE_NODE_ID" property="uTreeNodeId" jdbcType="DECIMAL" />
+    <result column="SALE_OP_ID" property="saleOpId" jdbcType="DECIMAL" />
+    <result column="SALE_OP_NAME" property="saleOpName" jdbcType="VARCHAR" />
+    <result column="SALE_OP_DEPART_ID" property="saleOpDepartId" jdbcType="DECIMAL" />
+    <result column="CONTRACT_BEGIN_DATE" property="contractBeginDate" jdbcType="DECIMAL" />
+    <result column="CONTRACT_END_DATE" property="contractEndDate" jdbcType="DECIMAL" />
+    <result column="F_SETTLEMENT_TYPE_DESC" property="fSettlementTypeDesc" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+    <result column="CONTACT_FAX" property="contactFax" jdbcType="VARCHAR" />
+    <result column="MSG_NOTIFY_TYPE_ALWAYS" property="msgNotifyTypeAlways" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CHANNEL_ID, CHANNEL_CODE, CHANNEL_NAME, CHANNEL_TYPE, REMARK, MODIFY_DATETIME, LAST_OP_ID, 
+    VALID, SUPPLIERINFO_ID, CHANNEL_LEVEL, CHANNEL_CITY_CODE, CHANNEL_PROVINCE_CODE, 
+    MSG_NOTIFY_ADDR, SELF_SIGN_CONTRACT, CHANNEL_SALE_DEPTMENT, CHANNEL_SALE_DEPTMENT_ID, 
+    OLD_SYS_CHANNEL_ID, REMARK1, REMARK2, REMARK3, U_TREE_NODE_ID, SALE_OP_ID, SALE_OP_NAME, 
+    SALE_OP_DEPART_ID, CONTRACT_BEGIN_DATE, CONTRACT_END_DATE, F_SETTLEMENT_TYPE_DESC, 
+    CONTACT_NAME, CONTACT_TEL, CONTACT_FAX, MSG_NOTIFY_TYPE_ALWAYS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shbus.easybus.data.model.TSysChannelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from SYS_CHANNEL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_CHANNEL
+    where CHANNEL_ID = #{channelId,jdbcType=DECIMAL}
+  </select>
+</mapper>

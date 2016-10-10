@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<properties resource="jdbc.properties" />
+
+	<context id="Oracle2Tables" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="${c3p0.orcl.driverClass}"
+			connectionURL="${c3p0.orcl.jdbcUrl}" userId="${c3p0.orcl.user}"
+			password="${c3p0.orcl.password}">
+		</jdbcConnection>
+
+		<javaTypeResolver type="com.shbus.jy.helpers.MyJavaTypeResolver">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.shbus.jy.data.model" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.shbus.jy.data.model" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.shbus.jy.data.model.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- <table tableName="EX_BUS_STOCK_TMP" domainObjectName="ExBusStockTmp"/> -->
+		<table tableName="interface_account" domainObjectName="InterfaceAccount"/>
+		<table tableName="EX_BUS_ORDER" domainObjectName="ExBusOrder" />
+		
+		<!-- <table tableName="EX_BUS_STOCK" domainObjectName="ExBusStock"/>
+		<table tableName="EX_BUS_STOCK" domainObjectName="ExBusStock">
+			<columnOverride column="ID" javaType="java.lang.Long"/>
+			<columnOverride column="FULL_PRICE" javaType="java.lang.Double"/>
+		</table>
+		<table tableName="EX_BUS_ORDER" domainObjectName="ExBusOrder" />
+		<table tableName="EX_ELE" domainObjectName="ExEle" />
+		<table tableName="EX_ELE_PRICE" domainObjectName="ExElePrice" />
+		<table tableName="EX_BUS_ORDER_PKG" domainObjectName="ExBusOrderPkg" />
+		<table tableName="EX_BUS_PKG" domainObjectName="ExBusPkg" />
+		<table tableName="EX_BUS_PKG_BUS" domainObjectName="ExBusPkgBus" />
+		<table tableName="EX_BUS_PKG_ELE" domainObjectName="ExBusPkgEle" />
+		<table tableName="EX_BUS_PRINTER" domainObjectName="ExBusPrinter" />
+		<table tableName="EX_BUS_R_BUS_REGISTRATION" domainObjectName="ExBusRBusRegistration" />
+		<table tableName="EX_BUS_R_BUS_ROAD_RECEIPT" domainObjectName="ExBusRBusRoadReceipt" />
+		<table tableName="EX_BUS_STATION" domainObjectName="ExBusStation" />
+		<table tableName="EX_BUS_STATION_MAPPING" domainObjectName="ExBusStationMapping" />
+		<table tableName="EX_BUS_STATION_TRAVELLINE" domainObjectName="ExBusStationTravelline" />
+		<table tableName="EX_BUS_STATION_TRAVELLINE_COST"
+			domainObjectName="ExBusStationTravellineCost" />
+		<table tableName="EX_BUS_STOCK_TPL" domainObjectName="ExBusStockTpl" />
+		<table tableName="EX_BUS_TEAM" domainObjectName="ExBusTeam" />
+		<table tableName="EX_BUS_ORDER_ELE" domainObjectName="ExBusOrderEle" /> -->
+		
+	</context>
+</generatorConfiguration>

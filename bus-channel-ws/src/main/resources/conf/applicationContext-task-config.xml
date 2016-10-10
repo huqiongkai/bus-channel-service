@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- <context:component-scan base-package="org/springframework/samples/task/basic/xml"/> -->
+
+	<task:scheduled-tasks>
+		<!-- 每隔3分钟触发一次 -->
+		<task:scheduled ref="sandSchedulingService" method="startAppOrderTask" cron="0 */3 * * * ?"/>
+		<!-- 每隔30分钟触发一次 -->
+		<task:scheduled ref="sandSchedulingService" method="startSandBusCacheTask" cron="0 */30 * * * ?"/>
+		<!-- 每隔2小时触发一次 -->
+		<task:scheduled ref="sandSchedulingService" method="startSuccOrderTask" cron="0 0 */2 * * ?"/>
+		<!-- 每天18点触发一次 -->
+		<task:scheduled ref="sandSchedulingService" method="syncUpAppOrdersWithDB" cron="0 0 21 * * ?"/>
+	</task:scheduled-tasks>
+
+</beans>

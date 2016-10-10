@@ -1,0 +1,1 @@
+thrift -out java --gen java resources\channelService.thrift

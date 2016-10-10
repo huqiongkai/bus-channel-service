@@ -1,0 +1,2002 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shbus.easybus.data.model.dao.TExBusOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.shbus.easybus.data.model.TExBusOrder" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="MODIFY_DATETIME" property="modifyDatetime" jdbcType="TIMESTAMP" />
+    <result column="LAST_OP_ID" property="lastOpId" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_ID" property="supplierId" jdbcType="VARCHAR" />
+    <result column="VALID" property="valid" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_OP_ID" property="createOpId" jdbcType="DECIMAL" />
+    <result column="TEAM_NO" property="teamNo" jdbcType="VARCHAR" />
+    <result column="P_PRODUCT_ID" property="pProductId" jdbcType="DECIMAL" />
+    <result column="EX_ORDER_ID_INDEX" property="exOrderIdIndex" jdbcType="DECIMAL" />
+    <result column="EX_ORDER_ID" property="exOrderId" jdbcType="VARCHAR" />
+    <result column="RTORDER_ID" property="rtorderId" jdbcType="VARCHAR" />
+    <result column="RTORDER_CODE" property="rtorderCode" jdbcType="VARCHAR" />
+    <result column="UNIT_ID" property="unitId" jdbcType="VARCHAR" />
+    <result column="TO_STATION_ID" property="toStationId" jdbcType="VARCHAR" />
+    <result column="PLEAVE_DT" property="pleaveDt" jdbcType="TIMESTAMP" />
+    <result column="TO_STATION_NAME" property="toStationName" jdbcType="VARCHAR" />
+    <result column="TO_STATION_6CODE" property="toStation6code" jdbcType="VARCHAR" />
+    <result column="FROM_STATION_NAME" property="fromStationName" jdbcType="VARCHAR" />
+    <result column="FROM_STATION_6CODE" property="fromStation6code" jdbcType="VARCHAR" />
+    <result column="TO_PROVINCE_NAME" property="toProvinceName" jdbcType="VARCHAR" />
+    <result column="TO_PROVINCE_6CODE" property="toProvince6code" jdbcType="VARCHAR" />
+    <result column="FROM_PROVINCE_NAME" property="fromProvinceName" jdbcType="VARCHAR" />
+    <result column="FROM_PROVINCE_6CODE" property="fromProvince6code" jdbcType="VARCHAR" />
+    <result column="BUS_TICKET_NO" property="busTicketNo" jdbcType="VARCHAR" />
+    <result column="TICKET_FAIL_REASON" property="ticketFailReason" jdbcType="VARCHAR" />
+    <result column="TICKET_REFUND_FAIL_REASON" property="ticketRefundFailReason" jdbcType="VARCHAR" />
+    <result column="TICKET_STATUS" property="ticketStatus" jdbcType="VARCHAR" />
+    <result column="TICKET_APPLY_DATE" property="ticketApplyDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_CONFIRM_DATE" property="ticketConfirmDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_REC_STATUS" property="ticketRecStatus" jdbcType="VARCHAR" />
+    <result column="TICKET_REC_DATE" property="ticketRecDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_REFUND_STATUS" property="ticketRefundStatus" jdbcType="VARCHAR" />
+    <result column="TICKET_REFUND_APPLY_DATE" property="ticketRefundApplyDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_REFUND_CONFIRM_DATE" property="ticketRefundConfirmDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_REFUND_AMOUNT" property="ticketRefundAmount" jdbcType="DECIMAL" />
+    <result column="TICKET_PRICE" property="ticketPrice" jdbcType="DECIMAL" />
+    <result column="TICKET_PRICE_DISCOUNT" property="ticketPriceDiscount" jdbcType="DECIMAL" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="DECIMAL" />
+    <result column="TICKET_REC_RANDOM_CODE" property="ticketRecRandomCode" jdbcType="VARCHAR" />
+    <result column="ORDER_PACKAGE_ID" property="orderPackageId" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="DECIMAL" />
+    <result column="FACT_AMOUNT_REC" property="factAmountRec" jdbcType="DECIMAL" />
+    <result column="FACT_AMOUNT_REFUND" property="factAmountRefund" jdbcType="DECIMAL" />
+    <result column="EX_ORDER_TICKET_COUNT" property="exOrderTicketCount" jdbcType="DECIMAL" />
+    <result column="PSG_NAME" property="psgName" jdbcType="VARCHAR" />
+    <result column="PSG_CERTIFICATE_TYPE" property="psgCertificateType" jdbcType="VARCHAR" />
+    <result column="PSG_CERTIFICATE_NO" property="psgCertificateNo" jdbcType="VARCHAR" />
+    <result column="PSG_MOBILE" property="psgMobile" jdbcType="VARCHAR" />
+    <result column="IS_TEST_ORDER" property="isTestOrder" jdbcType="VARCHAR" />
+    <result column="REC_TICKET_CHANEL_NAME" property="recTicketChanelName" jdbcType="VARCHAR" />
+    <result column="REC_TICKET_CHANEL_ID" property="recTicketChanelId" jdbcType="DECIMAL" />
+    <result column="TICKET_GATE_NAME" property="ticketGateName" jdbcType="VARCHAR" />
+    <result column="TICKET_SEAT_SEQ" property="ticketSeatSeq" jdbcType="VARCHAR" />
+    <result column="TICKET_USER_DISPLAY_NAME" property="ticketUserDisplayName" jdbcType="VARCHAR" />
+    <result column="TICKET_USER_NAME" property="ticketUserName" jdbcType="VARCHAR" />
+    <result column="TICKET_SALE_CORP" property="ticketSaleCorp" jdbcType="VARCHAR" />
+    <result column="TICKET_STATION_ADDR" property="ticketStationAddr" jdbcType="VARCHAR" />
+    <result column="TICKET_TYPE" property="ticketType" jdbcType="VARCHAR" />
+    <result column="TICKET_SALE_TIME" property="ticketSaleTime" jdbcType="VARCHAR" />
+    <result column="REC_TICKET_USER_ID" property="recTicketUserId" jdbcType="DECIMAL" />
+    <result column="REC_TICKET_USER_NAME" property="recTicketUserName" jdbcType="VARCHAR" />
+    <result column="CONFIRM_TICKET_USER_ID" property="confirmTicketUserId" jdbcType="DECIMAL" />
+    <result column="CONFIRM_TICKET_USER_NAME" property="confirmTicketUserName" jdbcType="VARCHAR" />
+    <result column="FAIL_TICKET_USER_ID" property="failTicketUserId" jdbcType="DECIMAL" />
+    <result column="FAIL_TICKET_USER_NAME" property="failTicketUserName" jdbcType="VARCHAR" />
+    <result column="INVALID_PRINT_COUNT" property="invalidPrintCount" jdbcType="DECIMAL" />
+    <result column="SYS_CODE_NAME" property="sysCodeName" jdbcType="VARCHAR" />
+    <result column="SYS_CODE" property="sysCode" jdbcType="VARCHAR" />
+    <result column="RAW_TO_STATION_ID" property="rawToStationId" jdbcType="VARCHAR" />
+    <result column="RAW_TO_STATION_NAME" property="rawToStationName" jdbcType="VARCHAR" />
+    <result column="RAW_UNIT_ID" property="rawUnitId" jdbcType="VARCHAR" />
+    <result column="RAW_UNIT_NAME" property="rawUnitName" jdbcType="VARCHAR" />
+    <result column="PKG_ORDER_STATUS" property="pkgOrderStatus" jdbcType="VARCHAR" />
+    <result column="PKG_CONFIRM_DATE" property="pkgConfirmDate" jdbcType="TIMESTAMP" />
+    <result column="PKG_NAME" property="pkgName" jdbcType="VARCHAR" />
+    <result column="PKG_DESC" property="pkgDesc" jdbcType="VARCHAR" />
+    <result column="PKG_DESC_INTERNAL" property="pkgDescInternal" jdbcType="VARCHAR" />
+    <result column="PKG_REFUND_DESC" property="pkgRefundDesc" jdbcType="VARCHAR" />
+    <result column="PKG_TYPE" property="pkgType" jdbcType="VARCHAR" />
+    <result column="PKG_SMS" property="pkgSms" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS" property="ticketUseStatus" jdbcType="VARCHAR" />
+    <result column="ORIGIN_EX_ORDER_ID_INDEX" property="originExOrderIdIndex" jdbcType="DECIMAL" />
+    <result column="ORIGIN_EX_ORDER_ID" property="originExOrderId" jdbcType="VARCHAR" />
+    <result column="SETTLEMENT_PRICE" property="settlementPrice" jdbcType="DECIMAL" />
+    <result column="SETTLEMENT_REBATE" property="settlementRebate" jdbcType="DECIMAL" />
+    <result column="SALE_PRICE_CAL_TYPE" property="salePriceCalType" jdbcType="VARCHAR" />
+    <result column="PKG_SALE_PRICE" property="pkgSalePrice" jdbcType="DECIMAL" />
+    <result column="PKG_TYPE_NAME" property="pkgTypeName" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS_NAME" property="ticketUseStatusName" jdbcType="VARCHAR" />
+    <result column="PKG_ORDER_STATUS_NAME" property="pkgOrderStatusName" jdbcType="VARCHAR" />
+    <result column="EX_BUS_ORDER_PKG_ID" property="exBusOrderPkgId" jdbcType="DECIMAL" />
+    <result column="CARRIER_NAME" property="carrierName" jdbcType="VARCHAR" />
+    <result column="SALE_PRICE_CAL_TYPE_NAME" property="salePriceCalTypeName" jdbcType="VARCHAR" />
+    <result column="EX_BUS_STOCK_ID" property="exBusStockId" jdbcType="DECIMAL" />
+    <result column="PKG_SALE_COUNT" property="pkgSaleCount" jdbcType="DECIMAL" />
+    <result column="ELE_SUPPLIER_ID" property="eleSupplierId" jdbcType="DECIMAL" />
+    <result column="ELE_SUPPLIER_CODE" property="eleSupplierCode" jdbcType="VARCHAR" />
+    <result column="ELE_SUPPLIER_NAME" property="eleSupplierName" jdbcType="VARCHAR" />
+    <result column="SETTLEMENT_TYPE" property="settlementType" jdbcType="VARCHAR" />
+    <result column="SETTLEMENT_TYPE_NAME" property="settlementTypeName" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS_SYN_STATUS" property="ticketUseStatusSynStatus" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS_CHECKED_DATE" property="ticketUseStatusCheckedDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_USE_STATUS_REFUND_DATE" property="ticketUseStatusRefundDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_USE_STATUS_INVALID_DATE" property="ticketUseStatusInvalidDate" jdbcType="TIMESTAMP" />
+    <result column="TICKET_USE_STATUS_CHECKED_OP" property="ticketUseStatusCheckedOp" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS_REFUND_OP" property="ticketUseStatusRefundOp" jdbcType="VARCHAR" />
+    <result column="TICKET_USE_STATUS_INVALID_OP" property="ticketUseStatusInvalidOp" jdbcType="VARCHAR" />
+    <result column="TICKET_REFUND_AMOUNT_SYS" property="ticketRefundAmountSys" jdbcType="DECIMAL" />
+    <result column="TICKET_REFUND_FEE_SYS" property="ticketRefundFeeSys" jdbcType="DECIMAL" />
+    <result column="TICKET_USE_STATUS_SYN_STATUS_N" property="ticketUseStatusSynStatusN" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MODIFY_DATETIME, LAST_OP_ID, REMARK, SUPPLIER_ID, VALID, CREATE_DATE, CREATE_OP_ID, 
+    TEAM_NO, P_PRODUCT_ID, EX_ORDER_ID_INDEX, EX_ORDER_ID, RTORDER_ID, RTORDER_CODE, 
+    UNIT_ID, TO_STATION_ID, PLEAVE_DT, TO_STATION_NAME, TO_STATION_6CODE, FROM_STATION_NAME, 
+    FROM_STATION_6CODE, TO_PROVINCE_NAME, TO_PROVINCE_6CODE, FROM_PROVINCE_NAME, FROM_PROVINCE_6CODE, 
+    BUS_TICKET_NO, TICKET_FAIL_REASON, TICKET_REFUND_FAIL_REASON, TICKET_STATUS, TICKET_APPLY_DATE, 
+    TICKET_CONFIRM_DATE, TICKET_REC_STATUS, TICKET_REC_DATE, TICKET_REFUND_STATUS, TICKET_REFUND_APPLY_DATE, 
+    TICKET_REFUND_CONFIRM_DATE, TICKET_REFUND_AMOUNT, TICKET_PRICE, TICKET_PRICE_DISCOUNT, 
+    CHANNEL_NAME, CHANNEL_ID, TICKET_REC_RANDOM_CODE, ORDER_PACKAGE_ID, VERSION, FACT_AMOUNT_REC, 
+    FACT_AMOUNT_REFUND, EX_ORDER_TICKET_COUNT, PSG_NAME, PSG_CERTIFICATE_TYPE, PSG_CERTIFICATE_NO, 
+    PSG_MOBILE, IS_TEST_ORDER, REC_TICKET_CHANEL_NAME, REC_TICKET_CHANEL_ID, TICKET_GATE_NAME, 
+    TICKET_SEAT_SEQ, TICKET_USER_DISPLAY_NAME, TICKET_USER_NAME, TICKET_SALE_CORP, TICKET_STATION_ADDR, 
+    TICKET_TYPE, TICKET_SALE_TIME, REC_TICKET_USER_ID, REC_TICKET_USER_NAME, CONFIRM_TICKET_USER_ID, 
+    CONFIRM_TICKET_USER_NAME, FAIL_TICKET_USER_ID, FAIL_TICKET_USER_NAME, INVALID_PRINT_COUNT, 
+    SYS_CODE_NAME, SYS_CODE, RAW_TO_STATION_ID, RAW_TO_STATION_NAME, RAW_UNIT_ID, RAW_UNIT_NAME, 
+    PKG_ORDER_STATUS, PKG_CONFIRM_DATE, PKG_NAME, PKG_DESC, PKG_DESC_INTERNAL, PKG_REFUND_DESC, 
+    PKG_TYPE, PKG_SMS, TICKET_USE_STATUS, ORIGIN_EX_ORDER_ID_INDEX, ORIGIN_EX_ORDER_ID, 
+    SETTLEMENT_PRICE, SETTLEMENT_REBATE, SALE_PRICE_CAL_TYPE, PKG_SALE_PRICE, PKG_TYPE_NAME, 
+    TICKET_USE_STATUS_NAME, PKG_ORDER_STATUS_NAME, EX_BUS_ORDER_PKG_ID, CARRIER_NAME, 
+    SALE_PRICE_CAL_TYPE_NAME, EX_BUS_STOCK_ID, PKG_SALE_COUNT, ELE_SUPPLIER_ID, ELE_SUPPLIER_CODE, 
+    ELE_SUPPLIER_NAME, SETTLEMENT_TYPE, SETTLEMENT_TYPE_NAME, TICKET_USE_STATUS_SYN_STATUS, 
+    TICKET_USE_STATUS_CHECKED_DATE, TICKET_USE_STATUS_REFUND_DATE, TICKET_USE_STATUS_INVALID_DATE, 
+    TICKET_USE_STATUS_CHECKED_OP, TICKET_USE_STATUS_REFUND_OP, TICKET_USE_STATUS_INVALID_OP, 
+    TICKET_REFUND_AMOUNT_SYS, TICKET_REFUND_FEE_SYS, TICKET_USE_STATUS_SYN_STATUS_N
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shbus.easybus.data.model.TExBusOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from EX_BUS_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from EX_BUS_ORDER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectOrderListByPage" resultMap="BaseResultMap" parameterType="map" >
+    select * from (
+	    select A.*, ROWNUM as RN from (
+		    select
+		    	ID, CHANNEL_NAME, CHANNEL_ID, CREATE_DATE, EX_ORDER_ID, PSG_NAME, PSG_CERTIFICATE_TYPE, 
+		    	PSG_CERTIFICATE_NO, PSG_MOBILE, UNIT_ID, FROM_STATION_NAME, TO_STATION_ID, TO_STATION_NAME,
+		    	PLEAVE_DT, TICKET_STATUS, TICKET_CONFIRM_DATE, TICKET_REC_STATUS, TICKET_REC_DATE,
+		    	EX_ORDER_ID_INDEX, RTORDER_ID, RTORDER_CODE, ORDER_PACKAGE_ID, TICKET_PRICE, TICKET_REC_RANDOM_CODE
+		    from EX_BUS_ORDER
+		    where 1=1
+		    <if test="exOrderId != null">
+				and EX_ORDER_ID = #{exOrderId,jdbcType=VARCHAR}
+			</if>
+			<if test="channelId != null">
+				and CHANNEL_ID = #{channelId,jdbcType=DECIMAL}
+			</if>
+			<if test="ticketStatus != null">
+				and TICKET_STATUS = #{ticketStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="ticketRecStatus != null">
+				and TICKET_REC_STATUS = #{ticketRecStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="psgName != null">
+				and PSG_NAME = #{psgName,jdbcType=VARCHAR}
+			</if>
+			<if test="psgMobile != null">
+				and PSG_MOBILE = #{psgMobile,jdbcType=VARCHAR}
+			</if>
+			<if test="psgCertificateNo != null">
+				and PSG_CERTIFICATE_NO = #{psgCertificateNo,jdbcType=VARCHAR}
+			</if>
+			<if test="fromStationId != null">
+				and UNIT_ID = #{fromStationId,jdbcType=VARCHAR}
+			</if>
+			<if test="toStationName != null">
+				and TO_STATION_NAME = #{toStationName,jdbcType=VARCHAR}
+			</if>
+			<if test="isTestOrder != null">
+				and IS_TEST_ORDER = #{isTestOrder,jdbcType=VARCHAR}
+			</if>
+			<if test="createDateBegin != null">
+				and CREATE_DATE >= to_date(#{createDateBegin,jdbcType=VARCHAR}, 'yyyy-mm-dd hh24:mi:ss')
+			</if>
+			<if test="createDateEnd != null">
+				and to_date(#{createDateEnd,jdbcType=VARCHAR}, 'yyyy-mm-dd hh24:mi:ss') >= CREATE_DATE 
+			</if>
+			order by CREATE_DATE desc
+	    ) A where #{rowNumEnd,jdbcType=DECIMAL} >= ROWNUM
+    ) where RN >= #{rowNumBegin,jdbcType=DECIMAL} 
+  </select>
+  
+  <select id="selectDailyOrderList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EX_BUS_ORDER
+    where IS_TEST_ORDER != 'Y' and create_date >= to_date(#{dailyDateyyyyMMdd,jdbcType=VARCHAR}, 'yyyy/mm/dd')
+    order by id desc
+  </select>
+  <select id="selectSandSuccOrderList" resultType="java.lang.String" parameterType="map" >
+  	select order_package_id from ex_bus_order
+  	where supplier_id = #{supplierId,jdbcType=VARCHAR} 
+  		and ticket_status = #{ticketStatus,jdbcType=VARCHAR} 
+  		and ticket_rec_status = #{ticketRecStatus,jdbcType=VARCHAR}
+  		and ticket_refund_status = #{ticketRefundStatus,jdbcType=VARCHAR}
+  		and IS_TEST_ORDER != 'Y'
+  		group by order_package_id
+  </select>
+  <select id="selectSandAppOrderList" resultType="java.lang.String" parameterType="map" >
+  	select order_package_id from ex_bus_order
+  	where supplier_id = #{supplierId,jdbcType=VARCHAR} 
+  		and ticket_status = #{ticketStatus,jdbcType=VARCHAR} 
+  		and IS_TEST_ORDER != 'Y'
+  		group by order_package_id
+  </select>
+  <insert id="insert" parameterType="com.shbus.easybus.data.model.TExBusOrder" >
+	  <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE">
+		 SELECT TABLE_SEQ.NEXTVAL FROM DUAL
+	  </selectKey>
+    insert into EX_BUS_ORDER (ID, MODIFY_DATETIME, LAST_OP_ID, 
+      REMARK, SUPPLIER_ID, VALID, 
+      CREATE_DATE, CREATE_OP_ID, TEAM_NO, 
+      P_PRODUCT_ID, EX_ORDER_ID_INDEX, EX_ORDER_ID, 
+      RTORDER_ID, RTORDER_CODE, UNIT_ID, 
+      TO_STATION_ID, PLEAVE_DT, TO_STATION_NAME, 
+      TO_STATION_6CODE, FROM_STATION_NAME, FROM_STATION_6CODE, 
+      TO_PROVINCE_NAME, TO_PROVINCE_6CODE, FROM_PROVINCE_NAME, 
+      FROM_PROVINCE_6CODE, BUS_TICKET_NO, TICKET_FAIL_REASON, 
+      TICKET_REFUND_FAIL_REASON, TICKET_STATUS, TICKET_APPLY_DATE, 
+      TICKET_CONFIRM_DATE, TICKET_REC_STATUS, TICKET_REC_DATE, 
+      TICKET_REFUND_STATUS, TICKET_REFUND_APPLY_DATE, 
+      TICKET_REFUND_CONFIRM_DATE, TICKET_REFUND_AMOUNT, 
+      TICKET_PRICE, TICKET_PRICE_DISCOUNT, CHANNEL_NAME, 
+      CHANNEL_ID, TICKET_REC_RANDOM_CODE, ORDER_PACKAGE_ID, 
+      VERSION, FACT_AMOUNT_REC, FACT_AMOUNT_REFUND, 
+      EX_ORDER_TICKET_COUNT, PSG_NAME, PSG_CERTIFICATE_TYPE, 
+      PSG_CERTIFICATE_NO, PSG_MOBILE, IS_TEST_ORDER, 
+      REC_TICKET_CHANEL_NAME, REC_TICKET_CHANEL_ID, 
+      TICKET_GATE_NAME, TICKET_SEAT_SEQ, TICKET_USER_DISPLAY_NAME, 
+      TICKET_USER_NAME, TICKET_SALE_CORP, TICKET_STATION_ADDR, 
+      TICKET_TYPE, TICKET_SALE_TIME, REC_TICKET_USER_ID, 
+      REC_TICKET_USER_NAME, CONFIRM_TICKET_USER_ID, 
+      CONFIRM_TICKET_USER_NAME, FAIL_TICKET_USER_ID, 
+      FAIL_TICKET_USER_NAME, INVALID_PRINT_COUNT, 
+      SYS_CODE_NAME, SYS_CODE, RAW_TO_STATION_ID, 
+      RAW_TO_STATION_NAME, RAW_UNIT_ID, RAW_UNIT_NAME, 
+      PKG_ORDER_STATUS, PKG_CONFIRM_DATE, PKG_NAME, 
+      PKG_DESC, PKG_DESC_INTERNAL, PKG_REFUND_DESC, 
+      PKG_TYPE, PKG_SMS, TICKET_USE_STATUS, 
+      ORIGIN_EX_ORDER_ID_INDEX, ORIGIN_EX_ORDER_ID, 
+      SETTLEMENT_PRICE, SETTLEMENT_REBATE, SALE_PRICE_CAL_TYPE, 
+      PKG_SALE_PRICE, PKG_TYPE_NAME, TICKET_USE_STATUS_NAME, 
+      PKG_ORDER_STATUS_NAME, EX_BUS_ORDER_PKG_ID, CARRIER_NAME, 
+      SALE_PRICE_CAL_TYPE_NAME, EX_BUS_STOCK_ID, PKG_SALE_COUNT, 
+      ELE_SUPPLIER_ID, ELE_SUPPLIER_CODE, ELE_SUPPLIER_NAME, 
+      SETTLEMENT_TYPE, SETTLEMENT_TYPE_NAME, TICKET_USE_STATUS_SYN_STATUS, 
+      TICKET_USE_STATUS_CHECKED_DATE, TICKET_USE_STATUS_REFUND_DATE, 
+      TICKET_USE_STATUS_INVALID_DATE, TICKET_USE_STATUS_CHECKED_OP, 
+      TICKET_USE_STATUS_REFUND_OP, TICKET_USE_STATUS_INVALID_OP, 
+      TICKET_REFUND_AMOUNT_SYS, TICKET_REFUND_FEE_SYS, 
+      TICKET_USE_STATUS_SYN_STATUS_N)
+    values (#{id,jdbcType=DECIMAL}, #{modifyDatetime,jdbcType=TIMESTAMP}, #{lastOpId,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{valid,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createOpId,jdbcType=DECIMAL}, #{teamNo,jdbcType=VARCHAR}, 
+      #{pProductId,jdbcType=DECIMAL}, #{exOrderIdIndex,jdbcType=DECIMAL}, #{exOrderId,jdbcType=VARCHAR}, 
+      #{rtorderId,jdbcType=VARCHAR}, #{rtorderCode,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR}, 
+      #{toStationId,jdbcType=VARCHAR}, #{pleaveDt,jdbcType=TIMESTAMP}, #{toStationName,jdbcType=VARCHAR}, 
+      #{toStation6code,jdbcType=VARCHAR}, #{fromStationName,jdbcType=VARCHAR}, #{fromStation6code,jdbcType=VARCHAR}, 
+      #{toProvinceName,jdbcType=VARCHAR}, #{toProvince6code,jdbcType=VARCHAR}, #{fromProvinceName,jdbcType=VARCHAR}, 
+      #{fromProvince6code,jdbcType=VARCHAR}, #{busTicketNo,jdbcType=VARCHAR}, #{ticketFailReason,jdbcType=VARCHAR}, 
+      #{ticketRefundFailReason,jdbcType=VARCHAR}, #{ticketStatus,jdbcType=VARCHAR}, #{ticketApplyDate,jdbcType=TIMESTAMP}, 
+      #{ticketConfirmDate,jdbcType=TIMESTAMP}, #{ticketRecStatus,jdbcType=VARCHAR}, #{ticketRecDate,jdbcType=TIMESTAMP}, 
+      #{ticketRefundStatus,jdbcType=VARCHAR}, #{ticketRefundApplyDate,jdbcType=TIMESTAMP}, 
+      #{ticketRefundConfirmDate,jdbcType=TIMESTAMP}, #{ticketRefundAmount,jdbcType=DECIMAL}, 
+      #{ticketPrice,jdbcType=DECIMAL}, #{ticketPriceDiscount,jdbcType=DECIMAL}, #{channelName,jdbcType=VARCHAR}, 
+      #{channelId,jdbcType=DECIMAL}, #{ticketRecRandomCode,jdbcType=VARCHAR}, #{orderPackageId,jdbcType=VARCHAR}, 
+      #{version,jdbcType=DECIMAL}, #{factAmountRec,jdbcType=DECIMAL}, #{factAmountRefund,jdbcType=DECIMAL}, 
+      #{exOrderTicketCount,jdbcType=DECIMAL}, #{psgName,jdbcType=VARCHAR}, #{psgCertificateType,jdbcType=VARCHAR}, 
+      #{psgCertificateNo,jdbcType=VARCHAR}, #{psgMobile,jdbcType=VARCHAR}, #{isTestOrder,jdbcType=VARCHAR}, 
+      #{recTicketChanelName,jdbcType=VARCHAR}, #{recTicketChanelId,jdbcType=DECIMAL}, 
+      #{ticketGateName,jdbcType=VARCHAR}, #{ticketSeatSeq,jdbcType=VARCHAR}, #{ticketUserDisplayName,jdbcType=VARCHAR}, 
+      #{ticketUserName,jdbcType=VARCHAR}, #{ticketSaleCorp,jdbcType=VARCHAR}, #{ticketStationAddr,jdbcType=VARCHAR}, 
+      #{ticketType,jdbcType=VARCHAR}, #{ticketSaleTime,jdbcType=VARCHAR}, #{recTicketUserId,jdbcType=DECIMAL}, 
+      #{recTicketUserName,jdbcType=VARCHAR}, #{confirmTicketUserId,jdbcType=DECIMAL}, 
+      #{confirmTicketUserName,jdbcType=VARCHAR}, #{failTicketUserId,jdbcType=DECIMAL}, 
+      #{failTicketUserName,jdbcType=VARCHAR}, #{invalidPrintCount,jdbcType=DECIMAL}, 
+      #{sysCodeName,jdbcType=VARCHAR}, #{sysCode,jdbcType=VARCHAR}, #{rawToStationId,jdbcType=VARCHAR}, 
+      #{rawToStationName,jdbcType=VARCHAR}, #{rawUnitId,jdbcType=VARCHAR}, #{rawUnitName,jdbcType=VARCHAR}, 
+      #{pkgOrderStatus,jdbcType=VARCHAR}, #{pkgConfirmDate,jdbcType=TIMESTAMP}, #{pkgName,jdbcType=VARCHAR}, 
+      #{pkgDesc,jdbcType=VARCHAR}, #{pkgDescInternal,jdbcType=VARCHAR}, #{pkgRefundDesc,jdbcType=VARCHAR}, 
+      #{pkgType,jdbcType=VARCHAR}, #{pkgSms,jdbcType=VARCHAR}, #{ticketUseStatus,jdbcType=VARCHAR}, 
+      #{originExOrderIdIndex,jdbcType=DECIMAL}, #{originExOrderId,jdbcType=VARCHAR}, 
+      #{settlementPrice,jdbcType=DECIMAL}, #{settlementRebate,jdbcType=DECIMAL}, #{salePriceCalType,jdbcType=VARCHAR}, 
+      #{pkgSalePrice,jdbcType=DECIMAL}, #{pkgTypeName,jdbcType=VARCHAR}, #{ticketUseStatusName,jdbcType=VARCHAR}, 
+      #{pkgOrderStatusName,jdbcType=VARCHAR}, #{exBusOrderPkgId,jdbcType=DECIMAL}, #{carrierName,jdbcType=VARCHAR}, 
+      #{salePriceCalTypeName,jdbcType=VARCHAR}, #{exBusStockId,jdbcType=DECIMAL}, #{pkgSaleCount,jdbcType=DECIMAL}, 
+      #{eleSupplierId,jdbcType=DECIMAL}, #{eleSupplierCode,jdbcType=VARCHAR}, #{eleSupplierName,jdbcType=VARCHAR}, 
+      #{settlementType,jdbcType=VARCHAR}, #{settlementTypeName,jdbcType=VARCHAR}, #{ticketUseStatusSynStatus,jdbcType=VARCHAR}, 
+      #{ticketUseStatusCheckedDate,jdbcType=TIMESTAMP}, #{ticketUseStatusRefundDate,jdbcType=TIMESTAMP}, 
+      #{ticketUseStatusInvalidDate,jdbcType=TIMESTAMP}, #{ticketUseStatusCheckedOp,jdbcType=VARCHAR}, 
+      #{ticketUseStatusRefundOp,jdbcType=VARCHAR}, #{ticketUseStatusInvalidOp,jdbcType=VARCHAR}, 
+      #{ticketRefundAmountSys,jdbcType=DECIMAL}, #{ticketRefundFeeSys,jdbcType=DECIMAL}, 
+      #{ticketUseStatusSynStatusN,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shbus.easybus.data.model.TExBusOrder" >
+    insert into EX_BUS_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="modifyDatetime != null" >
+        MODIFY_DATETIME,
+      </if>
+      <if test="lastOpId != null" >
+        LAST_OP_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID,
+      </if>
+      <if test="valid != null" >
+        VALID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createOpId != null" >
+        CREATE_OP_ID,
+      </if>
+      <if test="teamNo != null" >
+        TEAM_NO,
+      </if>
+      <if test="pProductId != null" >
+        P_PRODUCT_ID,
+      </if>
+      <if test="exOrderIdIndex != null" >
+        EX_ORDER_ID_INDEX,
+      </if>
+      <if test="exOrderId != null" >
+        EX_ORDER_ID,
+      </if>
+      <if test="rtorderId != null" >
+        RTORDER_ID,
+      </if>
+      <if test="rtorderCode != null" >
+        RTORDER_CODE,
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID,
+      </if>
+      <if test="toStationId != null" >
+        TO_STATION_ID,
+      </if>
+      <if test="pleaveDt != null" >
+        PLEAVE_DT,
+      </if>
+      <if test="toStationName != null" >
+        TO_STATION_NAME,
+      </if>
+      <if test="toStation6code != null" >
+        TO_STATION_6CODE,
+      </if>
+      <if test="fromStationName != null" >
+        FROM_STATION_NAME,
+      </if>
+      <if test="fromStation6code != null" >
+        FROM_STATION_6CODE,
+      </if>
+      <if test="toProvinceName != null" >
+        TO_PROVINCE_NAME,
+      </if>
+      <if test="toProvince6code != null" >
+        TO_PROVINCE_6CODE,
+      </if>
+      <if test="fromProvinceName != null" >
+        FROM_PROVINCE_NAME,
+      </if>
+      <if test="fromProvince6code != null" >
+        FROM_PROVINCE_6CODE,
+      </if>
+      <if test="busTicketNo != null" >
+        BUS_TICKET_NO,
+      </if>
+      <if test="ticketFailReason != null" >
+        TICKET_FAIL_REASON,
+      </if>
+      <if test="ticketRefundFailReason != null" >
+        TICKET_REFUND_FAIL_REASON,
+      </if>
+      <if test="ticketStatus != null" >
+        TICKET_STATUS,
+      </if>
+      <if test="ticketApplyDate != null" >
+        TICKET_APPLY_DATE,
+      </if>
+      <if test="ticketConfirmDate != null" >
+        TICKET_CONFIRM_DATE,
+      </if>
+      <if test="ticketRecStatus != null" >
+        TICKET_REC_STATUS,
+      </if>
+      <if test="ticketRecDate != null" >
+        TICKET_REC_DATE,
+      </if>
+      <if test="ticketRefundStatus != null" >
+        TICKET_REFUND_STATUS,
+      </if>
+      <if test="ticketRefundApplyDate != null" >
+        TICKET_REFUND_APPLY_DATE,
+      </if>
+      <if test="ticketRefundConfirmDate != null" >
+        TICKET_REFUND_CONFIRM_DATE,
+      </if>
+      <if test="ticketRefundAmount != null" >
+        TICKET_REFUND_AMOUNT,
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE,
+      </if>
+      <if test="ticketPriceDiscount != null" >
+        TICKET_PRICE_DISCOUNT,
+      </if>
+      <if test="channelName != null" >
+        CHANNEL_NAME,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="ticketRecRandomCode != null" >
+        TICKET_REC_RANDOM_CODE,
+      </if>
+      <if test="orderPackageId != null" >
+        ORDER_PACKAGE_ID,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="factAmountRec != null" >
+        FACT_AMOUNT_REC,
+      </if>
+      <if test="factAmountRefund != null" >
+        FACT_AMOUNT_REFUND,
+      </if>
+      <if test="exOrderTicketCount != null" >
+        EX_ORDER_TICKET_COUNT,
+      </if>
+      <if test="psgName != null" >
+        PSG_NAME,
+      </if>
+      <if test="psgCertificateType != null" >
+        PSG_CERTIFICATE_TYPE,
+      </if>
+      <if test="psgCertificateNo != null" >
+        PSG_CERTIFICATE_NO,
+      </if>
+      <if test="psgMobile != null" >
+        PSG_MOBILE,
+      </if>
+      <if test="isTestOrder != null" >
+        IS_TEST_ORDER,
+      </if>
+      <if test="recTicketChanelName != null" >
+        REC_TICKET_CHANEL_NAME,
+      </if>
+      <if test="recTicketChanelId != null" >
+        REC_TICKET_CHANEL_ID,
+      </if>
+      <if test="ticketGateName != null" >
+        TICKET_GATE_NAME,
+      </if>
+      <if test="ticketSeatSeq != null" >
+        TICKET_SEAT_SEQ,
+      </if>
+      <if test="ticketUserDisplayName != null" >
+        TICKET_USER_DISPLAY_NAME,
+      </if>
+      <if test="ticketUserName != null" >
+        TICKET_USER_NAME,
+      </if>
+      <if test="ticketSaleCorp != null" >
+        TICKET_SALE_CORP,
+      </if>
+      <if test="ticketStationAddr != null" >
+        TICKET_STATION_ADDR,
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE,
+      </if>
+      <if test="ticketSaleTime != null" >
+        TICKET_SALE_TIME,
+      </if>
+      <if test="recTicketUserId != null" >
+        REC_TICKET_USER_ID,
+      </if>
+      <if test="recTicketUserName != null" >
+        REC_TICKET_USER_NAME,
+      </if>
+      <if test="confirmTicketUserId != null" >
+        CONFIRM_TICKET_USER_ID,
+      </if>
+      <if test="confirmTicketUserName != null" >
+        CONFIRM_TICKET_USER_NAME,
+      </if>
+      <if test="failTicketUserId != null" >
+        FAIL_TICKET_USER_ID,
+      </if>
+      <if test="failTicketUserName != null" >
+        FAIL_TICKET_USER_NAME,
+      </if>
+      <if test="invalidPrintCount != null" >
+        INVALID_PRINT_COUNT,
+      </if>
+      <if test="sysCodeName != null" >
+        SYS_CODE_NAME,
+      </if>
+      <if test="sysCode != null" >
+        SYS_CODE,
+      </if>
+      <if test="rawToStationId != null" >
+        RAW_TO_STATION_ID,
+      </if>
+      <if test="rawToStationName != null" >
+        RAW_TO_STATION_NAME,
+      </if>
+      <if test="rawUnitId != null" >
+        RAW_UNIT_ID,
+      </if>
+      <if test="rawUnitName != null" >
+        RAW_UNIT_NAME,
+      </if>
+      <if test="pkgOrderStatus != null" >
+        PKG_ORDER_STATUS,
+      </if>
+      <if test="pkgConfirmDate != null" >
+        PKG_CONFIRM_DATE,
+      </if>
+      <if test="pkgName != null" >
+        PKG_NAME,
+      </if>
+      <if test="pkgDesc != null" >
+        PKG_DESC,
+      </if>
+      <if test="pkgDescInternal != null" >
+        PKG_DESC_INTERNAL,
+      </if>
+      <if test="pkgRefundDesc != null" >
+        PKG_REFUND_DESC,
+      </if>
+      <if test="pkgType != null" >
+        PKG_TYPE,
+      </if>
+      <if test="pkgSms != null" >
+        PKG_SMS,
+      </if>
+      <if test="ticketUseStatus != null" >
+        TICKET_USE_STATUS,
+      </if>
+      <if test="originExOrderIdIndex != null" >
+        ORIGIN_EX_ORDER_ID_INDEX,
+      </if>
+      <if test="originExOrderId != null" >
+        ORIGIN_EX_ORDER_ID,
+      </if>
+      <if test="settlementPrice != null" >
+        SETTLEMENT_PRICE,
+      </if>
+      <if test="settlementRebate != null" >
+        SETTLEMENT_REBATE,
+      </if>
+      <if test="salePriceCalType != null" >
+        SALE_PRICE_CAL_TYPE,
+      </if>
+      <if test="pkgSalePrice != null" >
+        PKG_SALE_PRICE,
+      </if>
+      <if test="pkgTypeName != null" >
+        PKG_TYPE_NAME,
+      </if>
+      <if test="ticketUseStatusName != null" >
+        TICKET_USE_STATUS_NAME,
+      </if>
+      <if test="pkgOrderStatusName != null" >
+        PKG_ORDER_STATUS_NAME,
+      </if>
+      <if test="exBusOrderPkgId != null" >
+        EX_BUS_ORDER_PKG_ID,
+      </if>
+      <if test="carrierName != null" >
+        CARRIER_NAME,
+      </if>
+      <if test="salePriceCalTypeName != null" >
+        SALE_PRICE_CAL_TYPE_NAME,
+      </if>
+      <if test="exBusStockId != null" >
+        EX_BUS_STOCK_ID,
+      </if>
+      <if test="pkgSaleCount != null" >
+        PKG_SALE_COUNT,
+      </if>
+      <if test="eleSupplierId != null" >
+        ELE_SUPPLIER_ID,
+      </if>
+      <if test="eleSupplierCode != null" >
+        ELE_SUPPLIER_CODE,
+      </if>
+      <if test="eleSupplierName != null" >
+        ELE_SUPPLIER_NAME,
+      </if>
+      <if test="settlementType != null" >
+        SETTLEMENT_TYPE,
+      </if>
+      <if test="settlementTypeName != null" >
+        SETTLEMENT_TYPE_NAME,
+      </if>
+      <if test="ticketUseStatusSynStatus != null" >
+        TICKET_USE_STATUS_SYN_STATUS,
+      </if>
+      <if test="ticketUseStatusCheckedDate != null" >
+        TICKET_USE_STATUS_CHECKED_DATE,
+      </if>
+      <if test="ticketUseStatusRefundDate != null" >
+        TICKET_USE_STATUS_REFUND_DATE,
+      </if>
+      <if test="ticketUseStatusInvalidDate != null" >
+        TICKET_USE_STATUS_INVALID_DATE,
+      </if>
+      <if test="ticketUseStatusCheckedOp != null" >
+        TICKET_USE_STATUS_CHECKED_OP,
+      </if>
+      <if test="ticketUseStatusRefundOp != null" >
+        TICKET_USE_STATUS_REFUND_OP,
+      </if>
+      <if test="ticketUseStatusInvalidOp != null" >
+        TICKET_USE_STATUS_INVALID_OP,
+      </if>
+      <if test="ticketRefundAmountSys != null" >
+        TICKET_REFUND_AMOUNT_SYS,
+      </if>
+      <if test="ticketRefundFeeSys != null" >
+        TICKET_REFUND_FEE_SYS,
+      </if>
+      <if test="ticketUseStatusSynStatusN != null" >
+        TICKET_USE_STATUS_SYN_STATUS_N,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyDatetime != null" >
+        #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpId != null" >
+        #{lastOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOpId != null" >
+        #{createOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="teamNo != null" >
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pProductId != null" >
+        #{pProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderIdIndex != null" >
+        #{exOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderId != null" >
+        #{exOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rtorderId != null" >
+        #{rtorderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rtorderCode != null" >
+        #{rtorderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationId != null" >
+        #{toStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="pleaveDt != null" >
+        #{pleaveDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toStationName != null" >
+        #{toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="toStation6code != null" >
+        #{toStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationName != null" >
+        #{fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStation6code != null" >
+        #{fromStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="toProvinceName != null" >
+        #{toProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="toProvince6code != null" >
+        #{toProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvinceName != null" >
+        #{fromProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvince6code != null" >
+        #{fromProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="busTicketNo != null" >
+        #{busTicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketFailReason != null" >
+        #{ticketFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundFailReason != null" >
+        #{ticketRefundFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketStatus != null" >
+        #{ticketStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketApplyDate != null" >
+        #{ticketApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketConfirmDate != null" >
+        #{ticketConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRecStatus != null" >
+        #{ticketRecStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRecDate != null" >
+        #{ticketRecDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundStatus != null" >
+        #{ticketRefundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundApplyDate != null" >
+        #{ticketRefundApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundConfirmDate != null" >
+        #{ticketRefundConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundAmount != null" >
+        #{ticketRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPrice != null" >
+        #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPriceDiscount != null" >
+        #{ticketPriceDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRecRandomCode != null" >
+        #{ticketRecRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPackageId != null" >
+        #{orderPackageId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="factAmountRec != null" >
+        #{factAmountRec,jdbcType=DECIMAL},
+      </if>
+      <if test="factAmountRefund != null" >
+        #{factAmountRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderTicketCount != null" >
+        #{exOrderTicketCount,jdbcType=DECIMAL},
+      </if>
+      <if test="psgName != null" >
+        #{psgName,jdbcType=VARCHAR},
+      </if>
+      <if test="psgCertificateType != null" >
+        #{psgCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="psgCertificateNo != null" >
+        #{psgCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psgMobile != null" >
+        #{psgMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isTestOrder != null" >
+        #{isTestOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketChanelName != null" >
+        #{recTicketChanelName,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketChanelId != null" >
+        #{recTicketChanelId,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketGateName != null" >
+        #{ticketGateName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSeatSeq != null" >
+        #{ticketSeatSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUserDisplayName != null" >
+        #{ticketUserDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUserName != null" >
+        #{ticketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSaleCorp != null" >
+        #{ticketSaleCorp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketStationAddr != null" >
+        #{ticketStationAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSaleTime != null" >
+        #{ticketSaleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketUserId != null" >
+        #{recTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="recTicketUserName != null" >
+        #{recTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTicketUserId != null" >
+        #{confirmTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTicketUserName != null" >
+        #{confirmTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="failTicketUserId != null" >
+        #{failTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="failTicketUserName != null" >
+        #{failTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidPrintCount != null" >
+        #{invalidPrintCount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCodeName != null" >
+        #{sysCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null" >
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rawToStationId != null" >
+        #{rawToStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawToStationName != null" >
+        #{rawToStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawUnitId != null" >
+        #{rawUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawUnitName != null" >
+        #{rawUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgOrderStatus != null" >
+        #{pkgOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgConfirmDate != null" >
+        #{pkgConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pkgName != null" >
+        #{pkgName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgDesc != null" >
+        #{pkgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgDescInternal != null" >
+        #{pkgDescInternal,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgRefundDesc != null" >
+        #{pkgRefundDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgType != null" >
+        #{pkgType,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgSms != null" >
+        #{pkgSms,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatus != null" >
+        #{ticketUseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="originExOrderIdIndex != null" >
+        #{originExOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="originExOrderId != null" >
+        #{originExOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementPrice != null" >
+        #{settlementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementRebate != null" >
+        #{settlementRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceCalType != null" >
+        #{salePriceCalType,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgSalePrice != null" >
+        #{pkgSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pkgTypeName != null" >
+        #{pkgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusName != null" >
+        #{ticketUseStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgOrderStatusName != null" >
+        #{pkgOrderStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="exBusOrderPkgId != null" >
+        #{exBusOrderPkgId,jdbcType=DECIMAL},
+      </if>
+      <if test="carrierName != null" >
+        #{carrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePriceCalTypeName != null" >
+        #{salePriceCalTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="exBusStockId != null" >
+        #{exBusStockId,jdbcType=DECIMAL},
+      </if>
+      <if test="pkgSaleCount != null" >
+        #{pkgSaleCount,jdbcType=DECIMAL},
+      </if>
+      <if test="eleSupplierId != null" >
+        #{eleSupplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="eleSupplierCode != null" >
+        #{eleSupplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eleSupplierName != null" >
+        #{eleSupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementType != null" >
+        #{settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementTypeName != null" >
+        #{settlementTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusSynStatus != null" >
+        #{ticketUseStatusSynStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusCheckedDate != null" >
+        #{ticketUseStatusCheckedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusRefundDate != null" >
+        #{ticketUseStatusRefundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusInvalidDate != null" >
+        #{ticketUseStatusInvalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusCheckedOp != null" >
+        #{ticketUseStatusCheckedOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusRefundOp != null" >
+        #{ticketUseStatusRefundOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusInvalidOp != null" >
+        #{ticketUseStatusInvalidOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundAmountSys != null" >
+        #{ticketRefundAmountSys,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRefundFeeSys != null" >
+        #{ticketRefundFeeSys,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketUseStatusSynStatusN != null" >
+        #{ticketUseStatusSynStatusN,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shbus.easybus.data.model.TExBusOrderExample" resultType="java.lang.Integer" >
+    select count(*) from EX_BUS_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update EX_BUS_ORDER
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifyDatetime != null" >
+        MODIFY_DATETIME = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOpId != null" >
+        LAST_OP_ID = #{record.lastOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierId != null" >
+        SUPPLIER_ID = #{record.supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valid != null" >
+        VALID = #{record.valid,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createOpId != null" >
+        CREATE_OP_ID = #{record.createOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.teamNo != null" >
+        TEAM_NO = #{record.teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pProductId != null" >
+        P_PRODUCT_ID = #{record.pProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.exOrderIdIndex != null" >
+        EX_ORDER_ID_INDEX = #{record.exOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.exOrderId != null" >
+        EX_ORDER_ID = #{record.exOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rtorderId != null" >
+        RTORDER_ID = #{record.rtorderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rtorderCode != null" >
+        RTORDER_CODE = #{record.rtorderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitId != null" >
+        UNIT_ID = #{record.unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toStationId != null" >
+        TO_STATION_ID = #{record.toStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pleaveDt != null" >
+        PLEAVE_DT = #{record.pleaveDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.toStationName != null" >
+        TO_STATION_NAME = #{record.toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toStation6code != null" >
+        TO_STATION_6CODE = #{record.toStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromStationName != null" >
+        FROM_STATION_NAME = #{record.fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromStation6code != null" >
+        FROM_STATION_6CODE = #{record.fromStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toProvinceName != null" >
+        TO_PROVINCE_NAME = #{record.toProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toProvince6code != null" >
+        TO_PROVINCE_6CODE = #{record.toProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromProvinceName != null" >
+        FROM_PROVINCE_NAME = #{record.fromProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromProvince6code != null" >
+        FROM_PROVINCE_6CODE = #{record.fromProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busTicketNo != null" >
+        BUS_TICKET_NO = #{record.busTicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketFailReason != null" >
+        TICKET_FAIL_REASON = #{record.ticketFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketRefundFailReason != null" >
+        TICKET_REFUND_FAIL_REASON = #{record.ticketRefundFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketStatus != null" >
+        TICKET_STATUS = #{record.ticketStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketApplyDate != null" >
+        TICKET_APPLY_DATE = #{record.ticketApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketConfirmDate != null" >
+        TICKET_CONFIRM_DATE = #{record.ticketConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketRecStatus != null" >
+        TICKET_REC_STATUS = #{record.ticketRecStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketRecDate != null" >
+        TICKET_REC_DATE = #{record.ticketRecDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketRefundStatus != null" >
+        TICKET_REFUND_STATUS = #{record.ticketRefundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketRefundApplyDate != null" >
+        TICKET_REFUND_APPLY_DATE = #{record.ticketRefundApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketRefundConfirmDate != null" >
+        TICKET_REFUND_CONFIRM_DATE = #{record.ticketRefundConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketRefundAmount != null" >
+        TICKET_REFUND_AMOUNT = #{record.ticketRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketPrice != null" >
+        TICKET_PRICE = #{record.ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketPriceDiscount != null" >
+        TICKET_PRICE_DISCOUNT = #{record.ticketPriceDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channelName != null" >
+        CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketRecRandomCode != null" >
+        TICKET_REC_RANDOM_CODE = #{record.ticketRecRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderPackageId != null" >
+        ORDER_PACKAGE_ID = #{record.orderPackageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.factAmountRec != null" >
+        FACT_AMOUNT_REC = #{record.factAmountRec,jdbcType=DECIMAL},
+      </if>
+      <if test="record.factAmountRefund != null" >
+        FACT_AMOUNT_REFUND = #{record.factAmountRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.exOrderTicketCount != null" >
+        EX_ORDER_TICKET_COUNT = #{record.exOrderTicketCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.psgName != null" >
+        PSG_NAME = #{record.psgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.psgCertificateType != null" >
+        PSG_CERTIFICATE_TYPE = #{record.psgCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.psgCertificateNo != null" >
+        PSG_CERTIFICATE_NO = #{record.psgCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.psgMobile != null" >
+        PSG_MOBILE = #{record.psgMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTestOrder != null" >
+        IS_TEST_ORDER = #{record.isTestOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recTicketChanelName != null" >
+        REC_TICKET_CHANEL_NAME = #{record.recTicketChanelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recTicketChanelId != null" >
+        REC_TICKET_CHANEL_ID = #{record.recTicketChanelId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketGateName != null" >
+        TICKET_GATE_NAME = #{record.ticketGateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketSeatSeq != null" >
+        TICKET_SEAT_SEQ = #{record.ticketSeatSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUserDisplayName != null" >
+        TICKET_USER_DISPLAY_NAME = #{record.ticketUserDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUserName != null" >
+        TICKET_USER_NAME = #{record.ticketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketSaleCorp != null" >
+        TICKET_SALE_CORP = #{record.ticketSaleCorp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketStationAddr != null" >
+        TICKET_STATION_ADDR = #{record.ticketStationAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketType != null" >
+        TICKET_TYPE = #{record.ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketSaleTime != null" >
+        TICKET_SALE_TIME = #{record.ticketSaleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recTicketUserId != null" >
+        REC_TICKET_USER_ID = #{record.recTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recTicketUserName != null" >
+        REC_TICKET_USER_NAME = #{record.recTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmTicketUserId != null" >
+        CONFIRM_TICKET_USER_ID = #{record.confirmTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.confirmTicketUserName != null" >
+        CONFIRM_TICKET_USER_NAME = #{record.confirmTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.failTicketUserId != null" >
+        FAIL_TICKET_USER_ID = #{record.failTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.failTicketUserName != null" >
+        FAIL_TICKET_USER_NAME = #{record.failTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalidPrintCount != null" >
+        INVALID_PRINT_COUNT = #{record.invalidPrintCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sysCodeName != null" >
+        SYS_CODE_NAME = #{record.sysCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysCode != null" >
+        SYS_CODE = #{record.sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawToStationId != null" >
+        RAW_TO_STATION_ID = #{record.rawToStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawToStationName != null" >
+        RAW_TO_STATION_NAME = #{record.rawToStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawUnitId != null" >
+        RAW_UNIT_ID = #{record.rawUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawUnitName != null" >
+        RAW_UNIT_NAME = #{record.rawUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgOrderStatus != null" >
+        PKG_ORDER_STATUS = #{record.pkgOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgConfirmDate != null" >
+        PKG_CONFIRM_DATE = #{record.pkgConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pkgName != null" >
+        PKG_NAME = #{record.pkgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgDesc != null" >
+        PKG_DESC = #{record.pkgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgDescInternal != null" >
+        PKG_DESC_INTERNAL = #{record.pkgDescInternal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgRefundDesc != null" >
+        PKG_REFUND_DESC = #{record.pkgRefundDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgType != null" >
+        PKG_TYPE = #{record.pkgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgSms != null" >
+        PKG_SMS = #{record.pkgSms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatus != null" >
+        TICKET_USE_STATUS = #{record.ticketUseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originExOrderIdIndex != null" >
+        ORIGIN_EX_ORDER_ID_INDEX = #{record.originExOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.originExOrderId != null" >
+        ORIGIN_EX_ORDER_ID = #{record.originExOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementPrice != null" >
+        SETTLEMENT_PRICE = #{record.settlementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.settlementRebate != null" >
+        SETTLEMENT_REBATE = #{record.settlementRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salePriceCalType != null" >
+        SALE_PRICE_CAL_TYPE = #{record.salePriceCalType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgSalePrice != null" >
+        PKG_SALE_PRICE = #{record.pkgSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pkgTypeName != null" >
+        PKG_TYPE_NAME = #{record.pkgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatusName != null" >
+        TICKET_USE_STATUS_NAME = #{record.ticketUseStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pkgOrderStatusName != null" >
+        PKG_ORDER_STATUS_NAME = #{record.pkgOrderStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exBusOrderPkgId != null" >
+        EX_BUS_ORDER_PKG_ID = #{record.exBusOrderPkgId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.carrierName != null" >
+        CARRIER_NAME = #{record.carrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salePriceCalTypeName != null" >
+        SALE_PRICE_CAL_TYPE_NAME = #{record.salePriceCalTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exBusStockId != null" >
+        EX_BUS_STOCK_ID = #{record.exBusStockId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pkgSaleCount != null" >
+        PKG_SALE_COUNT = #{record.pkgSaleCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eleSupplierId != null" >
+        ELE_SUPPLIER_ID = #{record.eleSupplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eleSupplierCode != null" >
+        ELE_SUPPLIER_CODE = #{record.eleSupplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eleSupplierName != null" >
+        ELE_SUPPLIER_NAME = #{record.eleSupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementType != null" >
+        SETTLEMENT_TYPE = #{record.settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementTypeName != null" >
+        SETTLEMENT_TYPE_NAME = #{record.settlementTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatusSynStatus != null" >
+        TICKET_USE_STATUS_SYN_STATUS = #{record.ticketUseStatusSynStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatusCheckedDate != null" >
+        TICKET_USE_STATUS_CHECKED_DATE = #{record.ticketUseStatusCheckedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketUseStatusRefundDate != null" >
+        TICKET_USE_STATUS_REFUND_DATE = #{record.ticketUseStatusRefundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketUseStatusInvalidDate != null" >
+        TICKET_USE_STATUS_INVALID_DATE = #{record.ticketUseStatusInvalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ticketUseStatusCheckedOp != null" >
+        TICKET_USE_STATUS_CHECKED_OP = #{record.ticketUseStatusCheckedOp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatusRefundOp != null" >
+        TICKET_USE_STATUS_REFUND_OP = #{record.ticketUseStatusRefundOp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketUseStatusInvalidOp != null" >
+        TICKET_USE_STATUS_INVALID_OP = #{record.ticketUseStatusInvalidOp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketRefundAmountSys != null" >
+        TICKET_REFUND_AMOUNT_SYS = #{record.ticketRefundAmountSys,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketRefundFeeSys != null" >
+        TICKET_REFUND_FEE_SYS = #{record.ticketRefundFeeSys,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ticketUseStatusSynStatusN != null" >
+        TICKET_USE_STATUS_SYN_STATUS_N = #{record.ticketUseStatusSynStatusN,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update EX_BUS_ORDER
+    set ID = #{record.id,jdbcType=DECIMAL},
+      MODIFY_DATETIME = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      LAST_OP_ID = #{record.lastOpId,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      SUPPLIER_ID = #{record.supplierId,jdbcType=VARCHAR},
+      VALID = #{record.valid,jdbcType=CHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CREATE_OP_ID = #{record.createOpId,jdbcType=DECIMAL},
+      TEAM_NO = #{record.teamNo,jdbcType=VARCHAR},
+      P_PRODUCT_ID = #{record.pProductId,jdbcType=DECIMAL},
+      EX_ORDER_ID_INDEX = #{record.exOrderIdIndex,jdbcType=DECIMAL},
+      EX_ORDER_ID = #{record.exOrderId,jdbcType=VARCHAR},
+      RTORDER_ID = #{record.rtorderId,jdbcType=VARCHAR},
+      RTORDER_CODE = #{record.rtorderCode,jdbcType=VARCHAR},
+      UNIT_ID = #{record.unitId,jdbcType=VARCHAR},
+      TO_STATION_ID = #{record.toStationId,jdbcType=VARCHAR},
+      PLEAVE_DT = #{record.pleaveDt,jdbcType=TIMESTAMP},
+      TO_STATION_NAME = #{record.toStationName,jdbcType=VARCHAR},
+      TO_STATION_6CODE = #{record.toStation6code,jdbcType=VARCHAR},
+      FROM_STATION_NAME = #{record.fromStationName,jdbcType=VARCHAR},
+      FROM_STATION_6CODE = #{record.fromStation6code,jdbcType=VARCHAR},
+      TO_PROVINCE_NAME = #{record.toProvinceName,jdbcType=VARCHAR},
+      TO_PROVINCE_6CODE = #{record.toProvince6code,jdbcType=VARCHAR},
+      FROM_PROVINCE_NAME = #{record.fromProvinceName,jdbcType=VARCHAR},
+      FROM_PROVINCE_6CODE = #{record.fromProvince6code,jdbcType=VARCHAR},
+      BUS_TICKET_NO = #{record.busTicketNo,jdbcType=VARCHAR},
+      TICKET_FAIL_REASON = #{record.ticketFailReason,jdbcType=VARCHAR},
+      TICKET_REFUND_FAIL_REASON = #{record.ticketRefundFailReason,jdbcType=VARCHAR},
+      TICKET_STATUS = #{record.ticketStatus,jdbcType=VARCHAR},
+      TICKET_APPLY_DATE = #{record.ticketApplyDate,jdbcType=TIMESTAMP},
+      TICKET_CONFIRM_DATE = #{record.ticketConfirmDate,jdbcType=TIMESTAMP},
+      TICKET_REC_STATUS = #{record.ticketRecStatus,jdbcType=VARCHAR},
+      TICKET_REC_DATE = #{record.ticketRecDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_STATUS = #{record.ticketRefundStatus,jdbcType=VARCHAR},
+      TICKET_REFUND_APPLY_DATE = #{record.ticketRefundApplyDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_CONFIRM_DATE = #{record.ticketRefundConfirmDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_AMOUNT = #{record.ticketRefundAmount,jdbcType=DECIMAL},
+      TICKET_PRICE = #{record.ticketPrice,jdbcType=DECIMAL},
+      TICKET_PRICE_DISCOUNT = #{record.ticketPriceDiscount,jdbcType=DECIMAL},
+      CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      CHANNEL_ID = #{record.channelId,jdbcType=DECIMAL},
+      TICKET_REC_RANDOM_CODE = #{record.ticketRecRandomCode,jdbcType=VARCHAR},
+      ORDER_PACKAGE_ID = #{record.orderPackageId,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=DECIMAL},
+      FACT_AMOUNT_REC = #{record.factAmountRec,jdbcType=DECIMAL},
+      FACT_AMOUNT_REFUND = #{record.factAmountRefund,jdbcType=DECIMAL},
+      EX_ORDER_TICKET_COUNT = #{record.exOrderTicketCount,jdbcType=DECIMAL},
+      PSG_NAME = #{record.psgName,jdbcType=VARCHAR},
+      PSG_CERTIFICATE_TYPE = #{record.psgCertificateType,jdbcType=VARCHAR},
+      PSG_CERTIFICATE_NO = #{record.psgCertificateNo,jdbcType=VARCHAR},
+      PSG_MOBILE = #{record.psgMobile,jdbcType=VARCHAR},
+      IS_TEST_ORDER = #{record.isTestOrder,jdbcType=VARCHAR},
+      REC_TICKET_CHANEL_NAME = #{record.recTicketChanelName,jdbcType=VARCHAR},
+      REC_TICKET_CHANEL_ID = #{record.recTicketChanelId,jdbcType=DECIMAL},
+      TICKET_GATE_NAME = #{record.ticketGateName,jdbcType=VARCHAR},
+      TICKET_SEAT_SEQ = #{record.ticketSeatSeq,jdbcType=VARCHAR},
+      TICKET_USER_DISPLAY_NAME = #{record.ticketUserDisplayName,jdbcType=VARCHAR},
+      TICKET_USER_NAME = #{record.ticketUserName,jdbcType=VARCHAR},
+      TICKET_SALE_CORP = #{record.ticketSaleCorp,jdbcType=VARCHAR},
+      TICKET_STATION_ADDR = #{record.ticketStationAddr,jdbcType=VARCHAR},
+      TICKET_TYPE = #{record.ticketType,jdbcType=VARCHAR},
+      TICKET_SALE_TIME = #{record.ticketSaleTime,jdbcType=VARCHAR},
+      REC_TICKET_USER_ID = #{record.recTicketUserId,jdbcType=DECIMAL},
+      REC_TICKET_USER_NAME = #{record.recTicketUserName,jdbcType=VARCHAR},
+      CONFIRM_TICKET_USER_ID = #{record.confirmTicketUserId,jdbcType=DECIMAL},
+      CONFIRM_TICKET_USER_NAME = #{record.confirmTicketUserName,jdbcType=VARCHAR},
+      FAIL_TICKET_USER_ID = #{record.failTicketUserId,jdbcType=DECIMAL},
+      FAIL_TICKET_USER_NAME = #{record.failTicketUserName,jdbcType=VARCHAR},
+      INVALID_PRINT_COUNT = #{record.invalidPrintCount,jdbcType=DECIMAL},
+      SYS_CODE_NAME = #{record.sysCodeName,jdbcType=VARCHAR},
+      SYS_CODE = #{record.sysCode,jdbcType=VARCHAR},
+      RAW_TO_STATION_ID = #{record.rawToStationId,jdbcType=VARCHAR},
+      RAW_TO_STATION_NAME = #{record.rawToStationName,jdbcType=VARCHAR},
+      RAW_UNIT_ID = #{record.rawUnitId,jdbcType=VARCHAR},
+      RAW_UNIT_NAME = #{record.rawUnitName,jdbcType=VARCHAR},
+      PKG_ORDER_STATUS = #{record.pkgOrderStatus,jdbcType=VARCHAR},
+      PKG_CONFIRM_DATE = #{record.pkgConfirmDate,jdbcType=TIMESTAMP},
+      PKG_NAME = #{record.pkgName,jdbcType=VARCHAR},
+      PKG_DESC = #{record.pkgDesc,jdbcType=VARCHAR},
+      PKG_DESC_INTERNAL = #{record.pkgDescInternal,jdbcType=VARCHAR},
+      PKG_REFUND_DESC = #{record.pkgRefundDesc,jdbcType=VARCHAR},
+      PKG_TYPE = #{record.pkgType,jdbcType=VARCHAR},
+      PKG_SMS = #{record.pkgSms,jdbcType=VARCHAR},
+      TICKET_USE_STATUS = #{record.ticketUseStatus,jdbcType=VARCHAR},
+      ORIGIN_EX_ORDER_ID_INDEX = #{record.originExOrderIdIndex,jdbcType=DECIMAL},
+      ORIGIN_EX_ORDER_ID = #{record.originExOrderId,jdbcType=VARCHAR},
+      SETTLEMENT_PRICE = #{record.settlementPrice,jdbcType=DECIMAL},
+      SETTLEMENT_REBATE = #{record.settlementRebate,jdbcType=DECIMAL},
+      SALE_PRICE_CAL_TYPE = #{record.salePriceCalType,jdbcType=VARCHAR},
+      PKG_SALE_PRICE = #{record.pkgSalePrice,jdbcType=DECIMAL},
+      PKG_TYPE_NAME = #{record.pkgTypeName,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_NAME = #{record.ticketUseStatusName,jdbcType=VARCHAR},
+      PKG_ORDER_STATUS_NAME = #{record.pkgOrderStatusName,jdbcType=VARCHAR},
+      EX_BUS_ORDER_PKG_ID = #{record.exBusOrderPkgId,jdbcType=DECIMAL},
+      CARRIER_NAME = #{record.carrierName,jdbcType=VARCHAR},
+      SALE_PRICE_CAL_TYPE_NAME = #{record.salePriceCalTypeName,jdbcType=VARCHAR},
+      EX_BUS_STOCK_ID = #{record.exBusStockId,jdbcType=DECIMAL},
+      PKG_SALE_COUNT = #{record.pkgSaleCount,jdbcType=DECIMAL},
+      ELE_SUPPLIER_ID = #{record.eleSupplierId,jdbcType=DECIMAL},
+      ELE_SUPPLIER_CODE = #{record.eleSupplierCode,jdbcType=VARCHAR},
+      ELE_SUPPLIER_NAME = #{record.eleSupplierName,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE = #{record.settlementType,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE_NAME = #{record.settlementTypeName,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_SYN_STATUS = #{record.ticketUseStatusSynStatus,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_CHECKED_DATE = #{record.ticketUseStatusCheckedDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_REFUND_DATE = #{record.ticketUseStatusRefundDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_INVALID_DATE = #{record.ticketUseStatusInvalidDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_CHECKED_OP = #{record.ticketUseStatusCheckedOp,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_REFUND_OP = #{record.ticketUseStatusRefundOp,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_INVALID_OP = #{record.ticketUseStatusInvalidOp,jdbcType=VARCHAR},
+      TICKET_REFUND_AMOUNT_SYS = #{record.ticketRefundAmountSys,jdbcType=DECIMAL},
+      TICKET_REFUND_FEE_SYS = #{record.ticketRefundFeeSys,jdbcType=DECIMAL},
+      TICKET_USE_STATUS_SYN_STATUS_N = #{record.ticketUseStatusSynStatusN,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shbus.easybus.data.model.TExBusOrder" >
+    update EX_BUS_ORDER
+    <set >
+      <if test="modifyDatetime != null" >
+        MODIFY_DATETIME = #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpId != null" >
+        LAST_OP_ID = #{lastOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        VALID = #{valid,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOpId != null" >
+        CREATE_OP_ID = #{createOpId,jdbcType=DECIMAL},
+      </if>
+      <if test="teamNo != null" >
+        TEAM_NO = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pProductId != null" >
+        P_PRODUCT_ID = #{pProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderIdIndex != null" >
+        EX_ORDER_ID_INDEX = #{exOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderId != null" >
+        EX_ORDER_ID = #{exOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rtorderId != null" >
+        RTORDER_ID = #{rtorderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rtorderCode != null" >
+        RTORDER_CODE = #{rtorderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationId != null" >
+        TO_STATION_ID = #{toStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="pleaveDt != null" >
+        PLEAVE_DT = #{pleaveDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toStationName != null" >
+        TO_STATION_NAME = #{toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="toStation6code != null" >
+        TO_STATION_6CODE = #{toStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationName != null" >
+        FROM_STATION_NAME = #{fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStation6code != null" >
+        FROM_STATION_6CODE = #{fromStation6code,jdbcType=VARCHAR},
+      </if>
+      <if test="toProvinceName != null" >
+        TO_PROVINCE_NAME = #{toProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="toProvince6code != null" >
+        TO_PROVINCE_6CODE = #{toProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvinceName != null" >
+        FROM_PROVINCE_NAME = #{fromProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromProvince6code != null" >
+        FROM_PROVINCE_6CODE = #{fromProvince6code,jdbcType=VARCHAR},
+      </if>
+      <if test="busTicketNo != null" >
+        BUS_TICKET_NO = #{busTicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketFailReason != null" >
+        TICKET_FAIL_REASON = #{ticketFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundFailReason != null" >
+        TICKET_REFUND_FAIL_REASON = #{ticketRefundFailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketStatus != null" >
+        TICKET_STATUS = #{ticketStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketApplyDate != null" >
+        TICKET_APPLY_DATE = #{ticketApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketConfirmDate != null" >
+        TICKET_CONFIRM_DATE = #{ticketConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRecStatus != null" >
+        TICKET_REC_STATUS = #{ticketRecStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRecDate != null" >
+        TICKET_REC_DATE = #{ticketRecDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundStatus != null" >
+        TICKET_REFUND_STATUS = #{ticketRefundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundApplyDate != null" >
+        TICKET_REFUND_APPLY_DATE = #{ticketRefundApplyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundConfirmDate != null" >
+        TICKET_REFUND_CONFIRM_DATE = #{ticketRefundConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketRefundAmount != null" >
+        TICKET_REFUND_AMOUNT = #{ticketRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPriceDiscount != null" >
+        TICKET_PRICE_DISCOUNT = #{ticketPriceDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="channelName != null" >
+        CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRecRandomCode != null" >
+        TICKET_REC_RANDOM_CODE = #{ticketRecRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPackageId != null" >
+        ORDER_PACKAGE_ID = #{orderPackageId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="factAmountRec != null" >
+        FACT_AMOUNT_REC = #{factAmountRec,jdbcType=DECIMAL},
+      </if>
+      <if test="factAmountRefund != null" >
+        FACT_AMOUNT_REFUND = #{factAmountRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="exOrderTicketCount != null" >
+        EX_ORDER_TICKET_COUNT = #{exOrderTicketCount,jdbcType=DECIMAL},
+      </if>
+      <if test="psgName != null" >
+        PSG_NAME = #{psgName,jdbcType=VARCHAR},
+      </if>
+      <if test="psgCertificateType != null" >
+        PSG_CERTIFICATE_TYPE = #{psgCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="psgCertificateNo != null" >
+        PSG_CERTIFICATE_NO = #{psgCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psgMobile != null" >
+        PSG_MOBILE = #{psgMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isTestOrder != null" >
+        IS_TEST_ORDER = #{isTestOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketChanelName != null" >
+        REC_TICKET_CHANEL_NAME = #{recTicketChanelName,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketChanelId != null" >
+        REC_TICKET_CHANEL_ID = #{recTicketChanelId,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketGateName != null" >
+        TICKET_GATE_NAME = #{ticketGateName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSeatSeq != null" >
+        TICKET_SEAT_SEQ = #{ticketSeatSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUserDisplayName != null" >
+        TICKET_USER_DISPLAY_NAME = #{ticketUserDisplayName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUserName != null" >
+        TICKET_USER_NAME = #{ticketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSaleCorp != null" >
+        TICKET_SALE_CORP = #{ticketSaleCorp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketStationAddr != null" >
+        TICKET_STATION_ADDR = #{ticketStationAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketSaleTime != null" >
+        TICKET_SALE_TIME = #{ticketSaleTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recTicketUserId != null" >
+        REC_TICKET_USER_ID = #{recTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="recTicketUserName != null" >
+        REC_TICKET_USER_NAME = #{recTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTicketUserId != null" >
+        CONFIRM_TICKET_USER_ID = #{confirmTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTicketUserName != null" >
+        CONFIRM_TICKET_USER_NAME = #{confirmTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="failTicketUserId != null" >
+        FAIL_TICKET_USER_ID = #{failTicketUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="failTicketUserName != null" >
+        FAIL_TICKET_USER_NAME = #{failTicketUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidPrintCount != null" >
+        INVALID_PRINT_COUNT = #{invalidPrintCount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysCodeName != null" >
+        SYS_CODE_NAME = #{sysCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null" >
+        SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rawToStationId != null" >
+        RAW_TO_STATION_ID = #{rawToStationId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawToStationName != null" >
+        RAW_TO_STATION_NAME = #{rawToStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawUnitId != null" >
+        RAW_UNIT_ID = #{rawUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawUnitName != null" >
+        RAW_UNIT_NAME = #{rawUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgOrderStatus != null" >
+        PKG_ORDER_STATUS = #{pkgOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgConfirmDate != null" >
+        PKG_CONFIRM_DATE = #{pkgConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pkgName != null" >
+        PKG_NAME = #{pkgName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgDesc != null" >
+        PKG_DESC = #{pkgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgDescInternal != null" >
+        PKG_DESC_INTERNAL = #{pkgDescInternal,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgRefundDesc != null" >
+        PKG_REFUND_DESC = #{pkgRefundDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgType != null" >
+        PKG_TYPE = #{pkgType,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgSms != null" >
+        PKG_SMS = #{pkgSms,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatus != null" >
+        TICKET_USE_STATUS = #{ticketUseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="originExOrderIdIndex != null" >
+        ORIGIN_EX_ORDER_ID_INDEX = #{originExOrderIdIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="originExOrderId != null" >
+        ORIGIN_EX_ORDER_ID = #{originExOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementPrice != null" >
+        SETTLEMENT_PRICE = #{settlementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementRebate != null" >
+        SETTLEMENT_REBATE = #{settlementRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceCalType != null" >
+        SALE_PRICE_CAL_TYPE = #{salePriceCalType,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgSalePrice != null" >
+        PKG_SALE_PRICE = #{pkgSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pkgTypeName != null" >
+        PKG_TYPE_NAME = #{pkgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusName != null" >
+        TICKET_USE_STATUS_NAME = #{ticketUseStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkgOrderStatusName != null" >
+        PKG_ORDER_STATUS_NAME = #{pkgOrderStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="exBusOrderPkgId != null" >
+        EX_BUS_ORDER_PKG_ID = #{exBusOrderPkgId,jdbcType=DECIMAL},
+      </if>
+      <if test="carrierName != null" >
+        CARRIER_NAME = #{carrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePriceCalTypeName != null" >
+        SALE_PRICE_CAL_TYPE_NAME = #{salePriceCalTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="exBusStockId != null" >
+        EX_BUS_STOCK_ID = #{exBusStockId,jdbcType=DECIMAL},
+      </if>
+      <if test="pkgSaleCount != null" >
+        PKG_SALE_COUNT = #{pkgSaleCount,jdbcType=DECIMAL},
+      </if>
+      <if test="eleSupplierId != null" >
+        ELE_SUPPLIER_ID = #{eleSupplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="eleSupplierCode != null" >
+        ELE_SUPPLIER_CODE = #{eleSupplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eleSupplierName != null" >
+        ELE_SUPPLIER_NAME = #{eleSupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementType != null" >
+        SETTLEMENT_TYPE = #{settlementType,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementTypeName != null" >
+        SETTLEMENT_TYPE_NAME = #{settlementTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusSynStatus != null" >
+        TICKET_USE_STATUS_SYN_STATUS = #{ticketUseStatusSynStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusCheckedDate != null" >
+        TICKET_USE_STATUS_CHECKED_DATE = #{ticketUseStatusCheckedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusRefundDate != null" >
+        TICKET_USE_STATUS_REFUND_DATE = #{ticketUseStatusRefundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusInvalidDate != null" >
+        TICKET_USE_STATUS_INVALID_DATE = #{ticketUseStatusInvalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUseStatusCheckedOp != null" >
+        TICKET_USE_STATUS_CHECKED_OP = #{ticketUseStatusCheckedOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusRefundOp != null" >
+        TICKET_USE_STATUS_REFUND_OP = #{ticketUseStatusRefundOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketUseStatusInvalidOp != null" >
+        TICKET_USE_STATUS_INVALID_OP = #{ticketUseStatusInvalidOp,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketRefundAmountSys != null" >
+        TICKET_REFUND_AMOUNT_SYS = #{ticketRefundAmountSys,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRefundFeeSys != null" >
+        TICKET_REFUND_FEE_SYS = #{ticketRefundFeeSys,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketUseStatusSynStatusN != null" >
+        TICKET_USE_STATUS_SYN_STATUS_N = #{ticketUseStatusSynStatusN,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shbus.easybus.data.model.TExBusOrder" >
+    update EX_BUS_ORDER
+    set MODIFY_DATETIME = #{modifyDatetime,jdbcType=TIMESTAMP},
+      LAST_OP_ID = #{lastOpId,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SUPPLIER_ID = #{supplierId,jdbcType=VARCHAR},
+      VALID = #{valid,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_OP_ID = #{createOpId,jdbcType=DECIMAL},
+      TEAM_NO = #{teamNo,jdbcType=VARCHAR},
+      P_PRODUCT_ID = #{pProductId,jdbcType=DECIMAL},
+      EX_ORDER_ID_INDEX = #{exOrderIdIndex,jdbcType=DECIMAL},
+      EX_ORDER_ID = #{exOrderId,jdbcType=VARCHAR},
+      RTORDER_ID = #{rtorderId,jdbcType=VARCHAR},
+      RTORDER_CODE = #{rtorderCode,jdbcType=VARCHAR},
+      UNIT_ID = #{unitId,jdbcType=VARCHAR},
+      TO_STATION_ID = #{toStationId,jdbcType=VARCHAR},
+      PLEAVE_DT = #{pleaveDt,jdbcType=TIMESTAMP},
+      TO_STATION_NAME = #{toStationName,jdbcType=VARCHAR},
+      TO_STATION_6CODE = #{toStation6code,jdbcType=VARCHAR},
+      FROM_STATION_NAME = #{fromStationName,jdbcType=VARCHAR},
+      FROM_STATION_6CODE = #{fromStation6code,jdbcType=VARCHAR},
+      TO_PROVINCE_NAME = #{toProvinceName,jdbcType=VARCHAR},
+      TO_PROVINCE_6CODE = #{toProvince6code,jdbcType=VARCHAR},
+      FROM_PROVINCE_NAME = #{fromProvinceName,jdbcType=VARCHAR},
+      FROM_PROVINCE_6CODE = #{fromProvince6code,jdbcType=VARCHAR},
+      BUS_TICKET_NO = #{busTicketNo,jdbcType=VARCHAR},
+      TICKET_FAIL_REASON = #{ticketFailReason,jdbcType=VARCHAR},
+      TICKET_REFUND_FAIL_REASON = #{ticketRefundFailReason,jdbcType=VARCHAR},
+      TICKET_STATUS = #{ticketStatus,jdbcType=VARCHAR},
+      TICKET_APPLY_DATE = #{ticketApplyDate,jdbcType=TIMESTAMP},
+      TICKET_CONFIRM_DATE = #{ticketConfirmDate,jdbcType=TIMESTAMP},
+      TICKET_REC_STATUS = #{ticketRecStatus,jdbcType=VARCHAR},
+      TICKET_REC_DATE = #{ticketRecDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_STATUS = #{ticketRefundStatus,jdbcType=VARCHAR},
+      TICKET_REFUND_APPLY_DATE = #{ticketRefundApplyDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_CONFIRM_DATE = #{ticketRefundConfirmDate,jdbcType=TIMESTAMP},
+      TICKET_REFUND_AMOUNT = #{ticketRefundAmount,jdbcType=DECIMAL},
+      TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      TICKET_PRICE_DISCOUNT = #{ticketPriceDiscount,jdbcType=DECIMAL},
+      CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      CHANNEL_ID = #{channelId,jdbcType=DECIMAL},
+      TICKET_REC_RANDOM_CODE = #{ticketRecRandomCode,jdbcType=VARCHAR},
+      ORDER_PACKAGE_ID = #{orderPackageId,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      FACT_AMOUNT_REC = #{factAmountRec,jdbcType=DECIMAL},
+      FACT_AMOUNT_REFUND = #{factAmountRefund,jdbcType=DECIMAL},
+      EX_ORDER_TICKET_COUNT = #{exOrderTicketCount,jdbcType=DECIMAL},
+      PSG_NAME = #{psgName,jdbcType=VARCHAR},
+      PSG_CERTIFICATE_TYPE = #{psgCertificateType,jdbcType=VARCHAR},
+      PSG_CERTIFICATE_NO = #{psgCertificateNo,jdbcType=VARCHAR},
+      PSG_MOBILE = #{psgMobile,jdbcType=VARCHAR},
+      IS_TEST_ORDER = #{isTestOrder,jdbcType=VARCHAR},
+      REC_TICKET_CHANEL_NAME = #{recTicketChanelName,jdbcType=VARCHAR},
+      REC_TICKET_CHANEL_ID = #{recTicketChanelId,jdbcType=DECIMAL},
+      TICKET_GATE_NAME = #{ticketGateName,jdbcType=VARCHAR},
+      TICKET_SEAT_SEQ = #{ticketSeatSeq,jdbcType=VARCHAR},
+      TICKET_USER_DISPLAY_NAME = #{ticketUserDisplayName,jdbcType=VARCHAR},
+      TICKET_USER_NAME = #{ticketUserName,jdbcType=VARCHAR},
+      TICKET_SALE_CORP = #{ticketSaleCorp,jdbcType=VARCHAR},
+      TICKET_STATION_ADDR = #{ticketStationAddr,jdbcType=VARCHAR},
+      TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      TICKET_SALE_TIME = #{ticketSaleTime,jdbcType=VARCHAR},
+      REC_TICKET_USER_ID = #{recTicketUserId,jdbcType=DECIMAL},
+      REC_TICKET_USER_NAME = #{recTicketUserName,jdbcType=VARCHAR},
+      CONFIRM_TICKET_USER_ID = #{confirmTicketUserId,jdbcType=DECIMAL},
+      CONFIRM_TICKET_USER_NAME = #{confirmTicketUserName,jdbcType=VARCHAR},
+      FAIL_TICKET_USER_ID = #{failTicketUserId,jdbcType=DECIMAL},
+      FAIL_TICKET_USER_NAME = #{failTicketUserName,jdbcType=VARCHAR},
+      INVALID_PRINT_COUNT = #{invalidPrintCount,jdbcType=DECIMAL},
+      SYS_CODE_NAME = #{sysCodeName,jdbcType=VARCHAR},
+      SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+      RAW_TO_STATION_ID = #{rawToStationId,jdbcType=VARCHAR},
+      RAW_TO_STATION_NAME = #{rawToStationName,jdbcType=VARCHAR},
+      RAW_UNIT_ID = #{rawUnitId,jdbcType=VARCHAR},
+      RAW_UNIT_NAME = #{rawUnitName,jdbcType=VARCHAR},
+      PKG_ORDER_STATUS = #{pkgOrderStatus,jdbcType=VARCHAR},
+      PKG_CONFIRM_DATE = #{pkgConfirmDate,jdbcType=TIMESTAMP},
+      PKG_NAME = #{pkgName,jdbcType=VARCHAR},
+      PKG_DESC = #{pkgDesc,jdbcType=VARCHAR},
+      PKG_DESC_INTERNAL = #{pkgDescInternal,jdbcType=VARCHAR},
+      PKG_REFUND_DESC = #{pkgRefundDesc,jdbcType=VARCHAR},
+      PKG_TYPE = #{pkgType,jdbcType=VARCHAR},
+      PKG_SMS = #{pkgSms,jdbcType=VARCHAR},
+      TICKET_USE_STATUS = #{ticketUseStatus,jdbcType=VARCHAR},
+      ORIGIN_EX_ORDER_ID_INDEX = #{originExOrderIdIndex,jdbcType=DECIMAL},
+      ORIGIN_EX_ORDER_ID = #{originExOrderId,jdbcType=VARCHAR},
+      SETTLEMENT_PRICE = #{settlementPrice,jdbcType=DECIMAL},
+      SETTLEMENT_REBATE = #{settlementRebate,jdbcType=DECIMAL},
+      SALE_PRICE_CAL_TYPE = #{salePriceCalType,jdbcType=VARCHAR},
+      PKG_SALE_PRICE = #{pkgSalePrice,jdbcType=DECIMAL},
+      PKG_TYPE_NAME = #{pkgTypeName,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_NAME = #{ticketUseStatusName,jdbcType=VARCHAR},
+      PKG_ORDER_STATUS_NAME = #{pkgOrderStatusName,jdbcType=VARCHAR},
+      EX_BUS_ORDER_PKG_ID = #{exBusOrderPkgId,jdbcType=DECIMAL},
+      CARRIER_NAME = #{carrierName,jdbcType=VARCHAR},
+      SALE_PRICE_CAL_TYPE_NAME = #{salePriceCalTypeName,jdbcType=VARCHAR},
+      EX_BUS_STOCK_ID = #{exBusStockId,jdbcType=DECIMAL},
+      PKG_SALE_COUNT = #{pkgSaleCount,jdbcType=DECIMAL},
+      ELE_SUPPLIER_ID = #{eleSupplierId,jdbcType=DECIMAL},
+      ELE_SUPPLIER_CODE = #{eleSupplierCode,jdbcType=VARCHAR},
+      ELE_SUPPLIER_NAME = #{eleSupplierName,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE = #{settlementType,jdbcType=VARCHAR},
+      SETTLEMENT_TYPE_NAME = #{settlementTypeName,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_SYN_STATUS = #{ticketUseStatusSynStatus,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_CHECKED_DATE = #{ticketUseStatusCheckedDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_REFUND_DATE = #{ticketUseStatusRefundDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_INVALID_DATE = #{ticketUseStatusInvalidDate,jdbcType=TIMESTAMP},
+      TICKET_USE_STATUS_CHECKED_OP = #{ticketUseStatusCheckedOp,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_REFUND_OP = #{ticketUseStatusRefundOp,jdbcType=VARCHAR},
+      TICKET_USE_STATUS_INVALID_OP = #{ticketUseStatusInvalidOp,jdbcType=VARCHAR},
+      TICKET_REFUND_AMOUNT_SYS = #{ticketRefundAmountSys,jdbcType=DECIMAL},
+      TICKET_REFUND_FEE_SYS = #{ticketRefundFeeSys,jdbcType=DECIMAL},
+      TICKET_USE_STATUS_SYN_STATUS_N = #{ticketUseStatusSynStatusN,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

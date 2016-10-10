@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>渠道订单查询</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.css">
+  
+    <!-- Custom styles for this template -->
+    <link href="static/css/main.css" rel="stylesheet">
+    <script type="text/javascript">
+    var queryObj = {};
+    var pageSize = 20;
+    var pageNo = 1;
+    
+    function populateOrderListTable(returnData) {
+		var tBodyElem = $("#order-list-table").find("tbody");
+		if (pageNo == 1) {
+			tBodyElem.html('');
+		}
+		//console.info(returnData.orderListData); 
+		if (returnData != null && returnData.orderListData != null) {
+			var dataLen = returnData.orderListData.length;
+			if (dataLen > 0) {
+				if (dataLen > pageSize) {
+					if ($("#pageDiv").hasClass("hide")) {
+						$("#pageDiv").removeClass("hide");
+					}
+				} else {
+					if (! $("#pageDiv").hasClass("hide")) {
+						$("#pageDiv").addClass("hide");
+					}
+				}
+			} else {
+				if (! $("#pageDiv").hasClass("hide")) {
+					$("#pageDiv").addClass("hide");
+				}
+				return;
+			}
+			var len;
+			if(dataLen > pageSize) {
+				len = dataLen - 1;
+			} else {
+				len = dataLen;
+			}
+			for (var i = 0; i < len; i ++) {
+				var itemData = returnData.orderListData[i];
+				var trElemHtml = '<tr><td>' + itemData.channelName + "</td>"
+					+ "<td>" + itemData.createDate + "</td>"
+					+ "<td>" + itemData.exOrderId + "</td>"
+					+ "<td>" + itemData.psgName + "</td>"
+					+ "<td>" + itemData.psgMobile + "</td>"
+					+ "<td>" + itemData.psgCertificateNo + "</td>"
+					+ "<td>" + itemData.fromStationName + "</td>"
+					+ "<td>" + itemData.pleaveDt + "</td>"
+					+ "<td>" + itemData.toStationName + "</td>"
+					+ "<td>" + itemData.ticketPrice + "</td>"
+					+ "<td class=\"ticket-status-td\">" + itemData.ticketStatus 
+						+ "<button onclick=\"refreshTicketStatus('" + itemData.orderPackageId 
+						+ "');\" class=\"btn btn-link\" style=\"padding: 5px;border: 0;margin-left: 5px;line-height: normal;\">"
+						+ "<span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span></button></td>"
+					+ "<td>" + itemData.exOrderIdIndex + "</td>"
+					+ "<td>" + itemData.orderPackageId + "</td>"
+					+ "<td>" + (itemData.ticketRecRandomCode==null ? "无": itemData.ticketRecRandomCode) + "</td>"
+					+ "<td>" + itemData.ticketConfirmDate + "</td>"
+					
+				tBodyElem.append(trElemHtml);
+			}
+		}
+	}
+    
+    function validateQueryParams() {
+    	queryObj.exOrderId = $("#exOrderId").val().trim();
+		queryObj.channelId = parseInt($("#channelId").val());
+		queryObj.ticketStatus = $("#ticketStatus").val();
+		queryObj.psgName = $("#psgName").val().trim();
+		queryObj.psgMobile = $("#psgMobile").val().trim();
+		queryObj.psgCertificateNo = $("#psgCertificateNo").val().trim();
+		queryObj.fromStationId = $("#fromStation").val();
+		queryObj.toStationName = $("#toStationName").val().trim();
+		queryObj.isTestOrder = $("#isTestOrder").val();
+		queryObj.createDateBegin = $("#createDateBegin").val();
+		queryObj.createDateEnd = $("#createDateEnd").val();
+		queryObj.rowNumBegin = 1 + (pageNo - 1) * pageSize;
+		queryObj.rowNumEnd = pageNo * pageSize + 1;	// 多取一条记录，分页用途
+    	if (queryObj.exOrderId == '' && queryObj.channelId < 1 && queryObj.psgName == '' 
+			&& queryObj.psgMobile=='' && queryObj.psgCertificateNo== ''
+			&& queryObj.toStationName == '' && queryObj.fromStationId== '') {
+			return false;
+		}
+    	return true;
+    }
+	function executeOrderSearch() {
+		if (validateQueryParams() == false) {
+			alert("外部订单号、渠道、姓名、电话、证件号、出发站、目的地不能同时为空！");
+			return;
+		}
+		
+		$.ajax({
+			url : "OrderActionServlet",
+			type: "POST",
+			dataType : "json",
+			data : {
+				queryParams: JSON.stringify(queryObj)
+			},
+			success : function (response) {
+				window.populateOrderListTable(response);
+			},
+			error : function() {
+				alert("查询失败，请重试！");
+				return;
+			}
+		});
+	}
+	
+	function executeOrderResultDump() {
+		if (validateQueryParams() == false) {
+			alert("外部订单号、渠道、姓名、电话、证件号、出发站、目的地不能同时为空！");
+			return;
+		}
+		queryObj.dumpAction = 'Y';
+		$("#queryParams").val(JSON.stringify(queryObj));
+		$("#download_form").submit();
+	}
+	
+	function refreshTicketStatus(sandOrderId) {
+		$.ajax({
+			url : "CheckTicketRecStatusServlet",
+			type: "GET",
+			dataType : "text",
+			data : {
+				sandOrderId: sandOrderId
+			},
+			success : function (response) {
+				if (response != null) {
+					switch (response) {
+					case '00':			// should never arrive here
+						alert('该订单的最新状态为： 待支付');
+						break;
+					case '01':
+						alert('该订单的最新状态为： 待取票');
+						break;
+					case '02':
+						alert('该订单的最新状态为： 已取票');
+						break;
+					case '03':
+						alert('该订单的最新状态为： 已取消');
+						break;
+					case '04':
+						alert('该订单的最新状态为： 出票中');
+						break;
+					case '05':
+						alert('该订单的最新状态为： 出票失败待退款');
+						break;
+					case '06':
+						alert('该订单的最新状态为： 出票失败已退款');
+						break;
+					}
+				}
+			},
+			error : function() {
+				alert("查询失败，请重试！");
+				return;
+			}
+		});
+	}
+    </script>
+  </head>
+
+  <body>
+    <div class="container-fluid container">
+      <div class="row">
+        <div class="main">
+          <h3 class="page-header">订单查询</h3>
+          <form class="form-horizontal">
+			  <div class="form-group col-md-4">
+			    <label for="exOrderId" class="col-sm-4 control-label">外部订单号：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="exOrderId">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="channelId" class="col-sm-4 control-label">渠道：</label>
+			    <div class="col-sm-8">
+			      <select class="form-control" id="channelId">
+			      		<option value="0">全部</option>
+			      		<option value="1">淘宝</option>
+			      		<option value="5">同城</option>
+			      		<option value="4">去哪儿</option>
+			      		<option value="2">携程</option>
+			      		<option value="0">通用渠道</option>
+			      		<option value="3">测试渠道</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="ticketStatus" class="col-sm-4 control-label">出票状态：</label>
+			    <div class="col-sm-8">
+			      <select class="form-control" id="ticketStatus">
+			      		<option value="">全部</option>
+			      		<option value="APP">处理中</option>
+			      		<option value="SUC">成功</option>
+			      		<option value="FAIL">失败</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="psgName" class="col-sm-4 control-label">姓名：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="psgName">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="psgMobile" class="col-sm-4 control-label">电话：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="psgMobile">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="psgCertificateNo" class="col-sm-4 control-label">证件号：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="psgCertificateNo">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="inputPassword3" class="col-sm-4 control-label">发车站点：</label>
+			    <div class="col-sm-8">
+			      <select class="form-control" id="fromStation">
+			      	 <option value="">全部</option>
+			         <option value="2000000021">客运南站</option>
+			         <option value="2000000022">浦东长途东站</option>
+			         <option value="1e49c163-394d-41e2-a647-e639b273beea">虹桥长途西站</option>
+			         <option value="2000000009">沪太路客运站</option>
+			         <option value="1000204">川沙客运站</option>
+			         <option value="59dc6171-e0e6-48f1-930c-2f4f4e4368bf">长途北站</option>
+			         <option value="1000206">高桥客运站</option>
+			         <option value="1000207">南汇客运站</option>
+			         <option value="1000208">吴淞客运站</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="toStationName" class="col-sm-4 control-label">目的地：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="toStationName">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="isTestOrder" class="col-sm-4 control-label">测试单：</label>
+			    <div class="col-sm-8">
+			      <select class="form-control" id="isTestOrder">
+			      		<option value="N">非测试单</option>
+			      		<option value="Y">测试订单</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="createDateBegin" class="col-sm-4 control-label">创建时间自：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="createDateBegin">
+			    </div>
+			  </div>
+			  <div class="form-group col-md-4">
+			    <label for="createDateEnd" class="col-sm-4 control-label">至：</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="createDateEnd">
+			    </div>
+			  </div>
+		</form>
+			    <div class="col-sm-offset-2" style="clear:both;">
+			      <button id="orderSearchBtn" class="form-control btn btn-primary" style="width: 120px; margin-bottom: 15px;">查 询</button>
+			      <button id="searchResultDumpBtn" class="form-control btn btn-primary" style="width: 200px; margin-bottom: 15px; margin-left:40px; margin-right: 20px;">报表导出查询结果</button>
+			      <div class="alert alert-success" role="alert" style="display:inline-block; margin-left:40px; margin-bottom: 0;">点击<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>可实时查看订单出票或取票的最新状态</div>
+			    </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped" id="order-list-table">
+              <thead>
+                <tr>
+                  <th>分销商</th>
+                  <th>创建时间</th>
+                  <th>订单号</th>
+                  <th>姓名</th>
+                  <th>电话</th>
+                  <th>证件号</th>
+                  <th>发车站点</th>
+                  <th>发车时间</th>
+                  <th>到达站</th>
+                  <th>票价</th>
+                  <th>出票状态</th>
+                  <th>车票序号</th>
+                  <th>交运订单号</th>
+                  <th>取票码</th>
+                  <th>出票确认时间</th>
+                  <!-- <th style="display:none">杉德订单号</th> -->
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+			<div id="pageDiv" style="margin: 20px auto; text-align: center;" class="hide">
+				<button id="morePageOrdersBtn" class="form-control btn btn-primary" style="width: 200px; margin-bottom: 15px; margin-right: 20px;">查看更多</button>
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<div style="display: none">
+		<iframe name="download_iframe" style="width: 1px; height: 0px;"></iframe>
+		<form id="download_form" action="OrderActionServlet" method="get"
+			target="download_iframe">
+			<input type="hidden" id="queryParams" name="queryParams" value="" />
+		</form>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script src="static/jquery-ui-1.11.4/datepicker-zh-TW.js"></script>
+    <script src="static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	$(function() {
+    		$("#orderSearchBtn").click(function() {
+    			if (window.pageNo != 1) {
+    				window.pageNo = 1;
+    			}
+    			if (! $("#pageDiv").hasClass("hide")) {
+    				$("#pageDiv").addClass("hide");
+    			}
+    			window.executeOrderSearch();
+    		});
+    		
+    		$("#searchResultDumpBtn").click(function() {
+    			window.executeOrderResultDump();
+    		});
+    		
+    		$("#morePageOrdersBtn").click(function() {
+    			window.pageNo = window.pageNo + 1;
+    			window.executeOrderSearch();
+    		});
+    		
+    		$("#createDateBegin").datepicker($.datepicker.regional["zh-TW"]);
+    		$("#createDateEnd").datepicker($.datepicker.regional["zh-TW"]);
+    	});
+    </script>
+  </body>
+</html>

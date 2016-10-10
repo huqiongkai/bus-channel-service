@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shbus.easybus.data.model.dao.TSysChinaRegionMapper">
+  <resultMap id="BaseResultMap" type="com.shbus.easybus.data.model.TSysChinaRegion">
+    <id column="REGION_CODE6" jdbcType="CHAR" property="regionCode6" />
+    <result column="REGION_CODE3" jdbcType="CHAR" property="regionCode3" />
+    <result column="REGION_CNNAME" jdbcType="VARCHAR" property="regionCnname" />
+    <result column="REGION_PINYIN" jdbcType="VARCHAR" property="regionPinyin" />
+    <result column="PARENT_PROVINCE_CNNAME" jdbcType="VARCHAR" property="parentProvinceCnname" />
+    <result column="PARENT_PROVINCE_PINYIN" jdbcType="VARCHAR" property="parentProvincePinyin" />
+    <result column="PARENT_PROVINCE_CODE6" jdbcType="CHAR" property="parentProvinceCode6" />
+    <result column="PARENT_CITY_CNNAME" jdbcType="VARCHAR" property="parentCityCnname" />
+    <result column="PARENT_CITY_PINYIN" jdbcType="VARCHAR" property="parentCityPinyin" />
+    <result column="PARENT_CITY_CODE6" jdbcType="CHAR" property="parentCityCode6" />
+    <result column="PARENT_CITY_CODE3" jdbcType="CHAR" property="parentCityCode3" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_OP_ID" jdbcType="DECIMAL" property="createOpId" />
+    <result column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" property="lastModifyDate" />
+    <result column="LAST_MODIFY_OP_ID" jdbcType="DECIMAL" property="lastModifyOpId" />
+    <result column="VALID" jdbcType="CHAR" property="valid" />
+    <result column="REGION_PYSZ" jdbcType="VARCHAR" property="regionPysz" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGION_CODE6, REGION_CODE3, REGION_CNNAME, REGION_PINYIN, PARENT_PROVINCE_CNNAME, 
+    PARENT_PROVINCE_PINYIN, PARENT_PROVINCE_CODE6, PARENT_CITY_CNNAME, PARENT_CITY_PINYIN, 
+    PARENT_CITY_CODE6, PARENT_CITY_CODE3, REMARK, CREATE_DATE, CREATE_OP_ID, LAST_MODIFY_DATE, 
+    LAST_MODIFY_OP_ID, VALID, REGION_PYSZ
+  </sql>
+  <select id="selectByExample" parameterType="com.shbus.easybus.data.model.TSysChinaRegionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from SYS_CHINA_REGION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_CHINA_REGION
+    where REGION_CODE6 = #{regionCode6,jdbcType=CHAR}
+  </select>
+  <select id="selectByRegionCnname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_CHINA_REGION
+    where REGION_CNNAME = #{regionCnname,jdbcType=VARCHAR}
+  </select>
+</mapper>

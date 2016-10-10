@@ -1,0 +1,627 @@
+<?xml version="1.0" ?><wsdl:definitions name="IJyBusTicketServiceService" targetNamespace="http://service.webservice.service.tkms.sander.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.webservice.service.tkms.sander.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema targetNamespace="http://service.webservice.service.tkms.sander.com/" version="1.0" xmlns:ns1="http://rpc.flight.exts.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://rpc.flight.exts.com/"></xs:import>
+<xs:complexType name="ticketBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aboardPlace" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveStation" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveStationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="busNum" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="busType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fullTicketPrice" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="ridingTime" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="sellTime" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="sellUnit" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="startStation" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="startingTime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="ticketRemainNums" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="vBusSearchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="closeDateTip" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="flightCountFormList" nillable="true" type="ns1:flightCountForm"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="flightInfoList" nillable="true" type="ns1:flightInfoBean"></xs:element>
+      <xs:element minOccurs="0" name="isClose" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema targetNamespace="http://rpc.flight.exts.com/" version="1.0" xmlns:tns="http://rpc.flight.exts.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="getFlightInfoByDetailId" type="tns:getFlightInfoByDetailId"></xs:element>
+<xs:element name="getFlightInfoByDetailIdResponse" type="tns:getFlightInfoByDetailIdResponse"></xs:element>
+<xs:element name="getFlightOnlineById" type="tns:getFlightOnlineById"></xs:element>
+<xs:element name="getFlightOnlineByIdResponse" type="tns:getFlightOnlineByIdResponse"></xs:element>
+<xs:element name="searchFlightOnline" type="tns:searchFlightOnline"></xs:element>
+<xs:element name="searchFlightOnlinePrice" type="tns:searchFlightOnlinePrice"></xs:element>
+<xs:element name="searchFlightOnlinePriceResponse" type="tns:searchFlightOnlinePriceResponse"></xs:element>
+<xs:element name="searchFlightOnlineResponse" type="tns:searchFlightOnlineResponse"></xs:element>
+<xs:element name="searchVFlightOnline" type="tns:searchVFlightOnline"></xs:element>
+<xs:element name="searchVFlightOnlineResponse" type="tns:searchVFlightOnlineResponse"></xs:element>
+<xs:element name="updateOnlineState" type="tns:updateOnlineState"></xs:element>
+<xs:element name="updateOnlineStateResponse" type="tns:updateOnlineStateResponse"></xs:element>
+<xs:complexType name="flightCountForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="count" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="dayOfWeek" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="isSel" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="monthDay" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="flightInfoBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="abordAddress" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arrvieProvince" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="beginDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="beginTime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="carId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="carType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endCity" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endStation" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fullPrice" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="onlineStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="startCity" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="startStation" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="ticketNum" type="xs:string"></xs:element>
+      <xs:element name="timeLimmit" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="flexPager">
+    <xs:sequence>
+      <xs:element name="page" type="xs:int"></xs:element>
+      <xs:element name="rp" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="sortname" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="sortorder" type="xs:string"></xs:element>
+      <xs:element name="total" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchFlightOnlineResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:flightResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="flightResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="flightList" nillable="true" type="tns:flightForm"></xs:element>
+      <xs:element name="rowCount" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="flightForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="companyId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="createDate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="createDateStr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="createUserId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="createUserName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="districtId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="districtName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightDate1" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightDate2" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightIndex" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightTime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromSystem" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="lastCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineDetail" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="onlineStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="operateDate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="operateDateStr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="operateUserId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="operateUserName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="remark" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="saledCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="seatType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationAddress" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updateStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updateTime" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="updateTimeStr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updateVer" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeBrand" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeGrade" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFlightOnlineById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchFlightOnline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:flightForm"></xs:element>
+      <xs:element minOccurs="0" name="arg1" type="tns:flexPager"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchVFlightOnlineResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:vFlightResult"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="vFlightResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="closeDateTip" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="flightCountFormList" nillable="true" type="tns:flightCountForm"></xs:element>
+      <xs:element minOccurs="0" name="isClose" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vFlightOnlineList" nillable="true" type="tns:vFlightOnline"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="vFlightOnline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arriveProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveStationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightIndex" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightTime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromSystem" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="halfPrice" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="indexNo" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="lastCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="mileage" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineDetail" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="onlineStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="saledCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="seatType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationAddress" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeBrand" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeGrade" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationPrintName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchVFlightOnline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:searchForm"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arriveProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="direct" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionName" type="xs:string"></xs:element>
+      <xs:element name="selFlightCountFlag" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="startDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationName" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFlightInfoByDetailId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchFlightOnlinePriceResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:flightPriceForm"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="flightPriceForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arriveProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="createDateStr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="halfPrice" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="indexNo" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="mileage" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="operateDateStr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="priceDetail" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="saledCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="updateStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updateTimeStr" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFlightOnlineByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:flightForm"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateOnlineState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFlightInfoByDetailIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:vFlightOnlineForm"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="vFlightOnlineForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="agentFee" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="arriveProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="arriveStationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="endRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightActualId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightDate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightIndex" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="flightNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineDetailId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightOnlineId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightStatus" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flightTime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromProvinceName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fromRegionName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="halfPrice" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="indexNo" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="lastCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="mileage" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="onlineDetail" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="saledCount" type="xs:decimal"></xs:element>
+      <xs:element minOccurs="0" name="seatType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationAddress" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stationName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleNo" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeBrand" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="vehicleTypeGrade" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="searchFlightOnlinePrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateOnlineStateResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="queryOrderStatusResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryVBusDetailResponse">
+    <wsdl:part name="return" type="tns:ticketBean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelInsuranceResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitThirdPartyInsOrderResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="confirmPayedOrderResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="confirmPayedOrder">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelOrder">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelInsurance">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryOrderInfoResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryOrderStatus">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryOrderInfoForCtripResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryOrderInfo">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitThirdPartyInsOrder">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg1" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg2" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg3" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg4" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg5" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg6" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg7" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg8" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryVBusListResponse">
+    <wsdl:part name="return" type="tns:vBusSearchResult">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelOrderResponse">
+    <wsdl:part name="return" type="xsd:boolean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyOrderResponse">
+    <wsdl:part name="return" type="xsd:boolean">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="policyPrint">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="policyPrintResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyOrder">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryOrderInfoForCtrip">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryVBusList">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg1" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="arg2" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryVBusDetail">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IJyBusTicketService">
+    <wsdl:operation name="queryOrderInfo">
+      <wsdl:input message="tns:queryOrderInfo" name="queryOrderInfo">
+    </wsdl:input>
+      <wsdl:output message="tns:queryOrderInfoResponse" name="queryOrderInfoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitThirdPartyInsOrder">
+      <wsdl:input message="tns:submitThirdPartyInsOrder" name="submitThirdPartyInsOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:submitThirdPartyInsOrderResponse" name="submitThirdPartyInsOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmPayedOrder">
+      <wsdl:input message="tns:confirmPayedOrder" name="confirmPayedOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:confirmPayedOrderResponse" name="confirmPayedOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelOrder">
+      <wsdl:input message="tns:cancelOrder" name="cancelOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:cancelOrderResponse" name="cancelOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryVBusDetail">
+      <wsdl:input message="tns:queryVBusDetail" name="queryVBusDetail">
+    </wsdl:input>
+      <wsdl:output message="tns:queryVBusDetailResponse" name="queryVBusDetailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyPrint">
+      <wsdl:input message="tns:policyPrint" name="policyPrint">
+    </wsdl:input>
+      <wsdl:output message="tns:policyPrintResponse" name="policyPrintResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryVBusList">
+      <wsdl:input message="tns:queryVBusList" name="queryVBusList">
+    </wsdl:input>
+      <wsdl:output message="tns:queryVBusListResponse" name="queryVBusListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryOrderStatus">
+      <wsdl:input message="tns:queryOrderStatus" name="queryOrderStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:queryOrderStatusResponse" name="queryOrderStatusResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyOrder">
+      <wsdl:input message="tns:verifyOrder" name="verifyOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:verifyOrderResponse" name="verifyOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryOrderInfoForCtrip">
+      <wsdl:input message="tns:queryOrderInfoForCtrip" name="queryOrderInfoForCtrip">
+    </wsdl:input>
+      <wsdl:output message="tns:queryOrderInfoForCtripResponse" name="queryOrderInfoForCtripResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelInsurance">
+      <wsdl:input message="tns:cancelInsurance" name="cancelInsurance">
+    </wsdl:input>
+      <wsdl:output message="tns:cancelInsuranceResponse" name="cancelInsuranceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IJyBusTicketServiceServiceSoapBinding" type="tns:IJyBusTicketService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="queryOrderInfo">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="queryOrderInfo">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryOrderInfoResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitThirdPartyInsOrder">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="submitThirdPartyInsOrder">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="submitThirdPartyInsOrderResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmPayedOrder">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="confirmPayedOrder">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="confirmPayedOrderResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelOrder">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="cancelOrder">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="cancelOrderResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryVBusDetail">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="queryVBusDetail">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryVBusDetailResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyPrint">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="policyPrint">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="policyPrintResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryVBusList">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="queryVBusList">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryVBusListResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryOrderStatus">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="queryOrderStatus">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryOrderStatusResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyOrder">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="verifyOrder">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="verifyOrderResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelInsurance">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="cancelInsurance">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="cancelInsuranceResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryOrderInfoForCtrip">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="queryOrderInfoForCtrip">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="queryOrderInfoForCtripResponse">
+        <soap:body namespace="http://service.webservice.service.tkms.sander.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IJyBusTicketServiceService">
+    <wsdl:port binding="tns:IJyBusTicketServiceServiceSoapBinding" name="IJyBusTicketServicePort">
+      <soap:address location="http://piao.962168.com/services/jyBusTicketRpc"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

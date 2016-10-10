@@ -1,0 +1,9 @@
+(1) install local jar to maven repository
+mvn install:install-file -Dfile=E:\dev\java\temp\busNoMaven\abc.jar -DgroupId=demo.tool.com -DartifactId=abc -Dversion=1.0.1 -Dpackaging=jar
+mvn install:install-file -DgroupId=tokyotyrant -DartifactId=tokyotyrant -Dversion=0.11 -Dpackaging=jar 
+	-Dfile=tokyotyrant-0.11-sources.jar -DgeneratePom=true -Dclassifier=sources
+
+(2)cxf wsdl2java:
+bin\wsdl2java -d tmp -p com.shbus.easybus -client -clientjar sandclient.jar http://piao.962168.com/services/jyBusTicketRpc?wsdl
+
+(3)mvn package -Dmaven.test.skip=true

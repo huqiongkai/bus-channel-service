@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd ">
+
+	<bean id="dbManager" class="com.shbus.easybus.service.db.DBManagerImpl">
+		<property name="interfaceAccountDao" ref="tInterfaceAccountDao"/>
+		<property name="sysChannelDao" ref="tSysChannelDao"/>
+		<property name="sysChinaRegionDao" ref="tSysChinaRegionDao"/>
+		<property name="exBusOrderDao" ref="tExBusOrderDao"/>
+	</bean>
+	
+	<bean id="cacheManager" class="com.shbus.easybus.service.cache.CacheManagerImpl">
+		<property name="memcachedClient" ref="memcachedClient" />
+		<property name="regionCacheTestKey" value="${memcache.test.region.key}" />
+		<property name="dbManager" ref="dbManager" />
+	</bean>
+	
+	<bean id="sandSchedulingService" class="com.shbus.easybus.service.back.SandSchedulingServiceImpl">
+		<property name="supplierId" value="${sandws_supplier_id}" />
+		<property name="sandTicketService" ref="sandWsClient" />
+		<property name="executorService" ref="threadPoolExecutor"/>
+		<property name="dbManager" ref="dbManager" />
+		<property name="cacheDayNum" value="${sandws_bus_cache_day}" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+	
+	<bean id="sandOrderService" class="com.shbus.easybus.service.sand.SandOrderServiceImpl">
+		<property name="sandTicketService" ref="sandWsClient" />
+		<property name="sandOrderUserId" value="${sandws_order_submit_user}" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+	
+	<bean id="commonService" class="com.shbus.easybus.service.db.CommonServiceImpl">
+		<property name="dbManager" ref="dbManager" />
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="sandSchedulingService" ref="sandSchedulingService" />
+	</bean>
+	
+	<bean id="channelServiceThriftImpl" class="com.shbus.easybus.service.ChannelServiceV2ThriftImpl">
+		<property name="sandOrderService" ref="sandOrderService" />
+		<property name="supplierId" value="${sandws_supplier_id}" />
+		<property name="commonService" ref="commonService" />
+	</bean>
+	
+	<bean id="thriftServiceInterceptor"
+		class="com.shbus.easybus.service.interceptor.ThriftServiceInterceptor" />
+
+	<bean id="channelServiceThriftFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="interceptorNames">
+			<list>
+				<value>thriftServiceInterceptor</value>
+			</list>
+		</property>
+		<property name="proxyInterfaces">
+			<value>com.shbus.easybus.thrift.front.ChannelService.Iface</value>
+		</property>
+		<!-- <property name="proxyTargetClass" value="true" /> -->
+		<property name="target">
+			<ref bean="channelServiceThriftImpl" />
+		</property>
+	</bean>
+	
+	<bean id="tjsonServletServiceMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="ChannelService">
+					<ref bean="channelServiceThriftFactoryBean" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

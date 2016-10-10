@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd ">
+
+	<bean id="dbManager" class="com.shbus.easybus.backoffice.service.DbManagerImpl">
+		<property name="exBusOrderDao" ref="tExBusOrderDao"/>
+	</bean>
+	
+	<bean id="commonOrderService" class="com.shbus.easybus.backoffice.service.CommonOrderServiceImpl">
+		<property name="dbManager" ref="dbManager" />
+		<property name="reportFileLocation" value="${report.file.location}" />
+	</bean>
+	
+	<!-- <bean id="orderSchedulingService" class="com.shbus.easybus.backoffice.service.back.OrderSchedulingServiceImpl">
+		<property name="commonOrderService" ref="commonOrderService" />
+		<property name="reportFileLocation" value="${report.file.location}" />
+	</bean> -->
+	
+</beans>
