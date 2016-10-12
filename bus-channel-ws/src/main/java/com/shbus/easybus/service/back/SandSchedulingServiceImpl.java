@@ -307,79 +307,77 @@ public class SandSchedulingServiceImpl implements SandSchedulingService {
 	}
 	
 	private void populateSandBusCache(FlightInfoBean item, String leaveTimeyyyyMMdd, Map<String, List<BusAllInfoVO>> resultMap) throws Throwable {
-		if (!item.isTimeLimmit() && "Y".equalsIgnoreCase(item.getOnlineStatus())) {	// 是否在购票时间限制内，并且为在线可售状态
-			String sandFlightId = item.getFlightOnlineDetailId();
-			if (StringUtils.isBlank(sandFlightId)) {
-				log.error("popularSandBusCache(), sandFlightId is empty");
-				return;
+		String sandFlightId = item.getFlightOnlineDetailId();
+		if (StringUtils.isBlank(sandFlightId)) {
+			log.error("popularSandBusCache(), sandFlightId is empty");
+			return;
+		}
+		sandFlightId = sandFlightId.trim();
+		SandBusDetailVO sandBusDetail = querySandBusDetail(sandFlightId, leaveTimeyyyyMMdd);
+		if (sandBusDetail == null) {
+			log.error("popularSandBusCache(), sand bus not found, sandFlightId=" + sandFlightId);
+			return;
+		}
+		
+		BusBasicInfoVO busBasicInfoVO = new BusBasicInfoVO();
+		String startStationId = SandStationIdMapping.getBusStationId(sandBusDetail.getStationId());
+//		startStationId = SandBusStations.getStationIdByName(sandBusDetail.getStartStation())
+		if (startStationId == null) {
+			log.error("popularSandBusCache(), startStation not supported yet, stationName="
+					+ sandBusDetail.getStartStation());
+			return;
+		}
+		
+		// FIXME 同名目的地解析
+		SysChinaRegion arrive = cacheManager.getSysChinaRegionByCnname(sandBusDetail.getArriveRegionName());
+		String toStationId = "";
+		if (arrive != null) {
+			toStationId = StationMappingSysChinaRegion.getStationIdByRegionCode(arrive.getRegionCode6());
+		}
+		if (arrive == null || StringUtils.isBlank(toStationId)) {
+			log.error("获取车次详情出错，目的地解析失败，班次ID=" + sandFlightId + ", arriveRegionName="
+					+ sandBusDetail.getArriveRegionName());
+			return;
+		}
+		toStationId = toStationId.trim();
+		
+		String leaveTime = leaveTimeyyyyMMdd + sandBusDetail.getStartingTime().trim().replace(":", "") + "00";
+		busBasicInfoVO.setPleaveDtyyyyMMddHHmmss(leaveTime);
+		BusPriceVO busPriceVO = new BusPriceVO();
+		int ticketNum;
+		try {
+			ticketNum = Integer.parseInt(sandBusDetail.getTicketRemainNums());
+			busPriceVO.setPriceFull(((Double) Double.parseDouble(sandBusDetail.getFullTicketPrice())).intValue());
+		} catch (NumberFormatException e) {
+			log.error("获取车次详情出错，ticketNum or ticketPrice parse error, 班次ID=" + sandFlightId, e);
+			return;
+		}
+		
+		busBasicInfoVO.setUnitId(startStationId);
+		busBasicInfoVO.setToStationId(toStationId);
+		busBasicInfoVO.setDepart(dbManager.getSysChinaRegionByDepartStation(startStationId));
+		busBasicInfoVO.setArrive(arrive);
+		busBasicInfoVO.setRtorderCode(sandBusDetail.getBusNum());
+		busBasicInfoVO.setRtorderId(sandFlightId);
+		
+		busBasicInfoVO.setBusTypeId(sandBusDetail.getBusType());
+		busBasicInfoVO.setToProvinceName(item.getArrvieProvince());
+		busBasicInfoVO.setTicketGateName(sandBusDetail.getAboardPlace());
+		busBasicInfoVO.setToStationName(StringUtils.isNotBlank(sandBusDetail.getArriveStationName())
+				? sandBusDetail.getArriveRegionName() + sandBusDetail.getArriveStationName()
+				: sandBusDetail.getArriveRegionName());
+		BusQuotaVO busQuotaVO = new BusQuotaVO(ticketNum);
+		BusAllInfoVO busVO = new BusAllInfoVO(busPriceVO, busBasicInfoVO, busQuotaVO, null);
+		
+		String cacheKey = null;
+		try {
+			cacheKey = startStationId + "." + toStationId + "." + leaveTimeyyyyMMdd;
+			if (! resultMap.containsKey(cacheKey)) {
+				resultMap.put(cacheKey, new ArrayList<BusAllInfoVO>());
 			}
-			sandFlightId = sandFlightId.trim();
-			SandBusDetailVO sandBusDetail = querySandBusDetail(sandFlightId, leaveTimeyyyyMMdd);
-			if (sandBusDetail == null) {
-				log.error("popularSandBusCache(), sand bus not found, sandFlightId=" + sandFlightId);
-				return;
-			}
-			
-			BusBasicInfoVO busBasicInfoVO = new BusBasicInfoVO();
-			String startStationId = SandStationIdMapping.getBusStationId(sandBusDetail.getStationId());
-//			startStationId = SandBusStations.getStationIdByName(sandBusDetail.getStartStation())
-			if (startStationId == null) {
-				log.error("popularSandBusCache(), startStation not supported yet, stationName="
-						+ sandBusDetail.getStartStation());
-				return;
-			}
-			
-			// FIXME 同名目的地解析
-			SysChinaRegion arrive = cacheManager.getSysChinaRegionByCnname(sandBusDetail.getArriveRegionName());
-			String toStationId = "";
-			if (arrive != null) {
-				toStationId = StationMappingSysChinaRegion.getStationIdByRegionCode(arrive.getRegionCode6());
-			}
-			if (arrive == null || StringUtils.isBlank(toStationId)) {
-				log.error("获取车次详情出错，目的地解析失败，班次ID=" + sandFlightId + ", arriveRegionName="
-						+ sandBusDetail.getArriveRegionName());
-				return;
-			}
-			toStationId = toStationId.trim();
-			
-			String leaveTime = leaveTimeyyyyMMdd + sandBusDetail.getStartingTime().trim().replace(":", "") + "00";
-			busBasicInfoVO.setPleaveDtyyyyMMddHHmmss(leaveTime);
-			BusPriceVO busPriceVO = new BusPriceVO();
-			int ticketNum;
-			try {
-				ticketNum = Integer.parseInt(sandBusDetail.getTicketRemainNums());
-				busPriceVO.setPriceFull(((Double) Double.parseDouble(sandBusDetail.getFullTicketPrice())).intValue());
-			} catch (NumberFormatException e) {
-				log.error("获取车次详情出错，ticketNum or ticketPrice parse error, 班次ID=" + sandFlightId, e);
-				return;
-			}
-			
-			busBasicInfoVO.setUnitId(startStationId);
-			busBasicInfoVO.setToStationId(toStationId);
-			busBasicInfoVO.setDepart(dbManager.getSysChinaRegionByDepartStation(startStationId));
-			busBasicInfoVO.setArrive(arrive);
-			busBasicInfoVO.setRtorderCode(sandBusDetail.getBusNum());
-			busBasicInfoVO.setRtorderId(sandFlightId);
-			
-			busBasicInfoVO.setBusTypeId(sandBusDetail.getBusType());
-			busBasicInfoVO.setToProvinceName(item.getArrvieProvince());
-			busBasicInfoVO.setTicketGateName(sandBusDetail.getAboardPlace());
-			busBasicInfoVO.setToStationName(StringUtils.isNotBlank(sandBusDetail.getArriveStationName())
-					? sandBusDetail.getArriveRegionName() + sandBusDetail.getArriveStationName()
-					: sandBusDetail.getArriveRegionName());
-			BusQuotaVO busQuotaVO = new BusQuotaVO(ticketNum);
-			BusAllInfoVO busVO = new BusAllInfoVO(busPriceVO, busBasicInfoVO, busQuotaVO, null);
-			
-			String cacheKey = null;
-			try {
-				cacheKey = startStationId + "." + toStationId + "." + leaveTimeyyyyMMdd;
-				if (! resultMap.containsKey(cacheKey)) {
-					resultMap.put(cacheKey, new ArrayList<BusAllInfoVO>());
-				}
-				resultMap.get(cacheKey).add(busVO);
-			} catch (Exception e) {
-				log.error("add new busVO fail for cacheKey=" + cacheKey, e);
-			}
+			resultMap.get(cacheKey).add(busVO);
+		} catch (Exception e) {
+			log.error("add new busVO fail for cacheKey=" + cacheKey, e);
 		}
 	}
 	
