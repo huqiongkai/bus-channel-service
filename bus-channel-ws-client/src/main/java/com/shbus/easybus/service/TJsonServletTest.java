@@ -78,7 +78,7 @@ public class TJsonServletTest extends TestCase {
 		queryBusReq.setAuthVO(authVO);
 		queryBusReq.setUnitId(UnitIdConstants.UNIT_ID_HTLKYZ/*"1e49c163-394d-41e2-a647-e639b273beea"*//*UnitIdConstants.UNIT_ID_KYNZ*/);
 //		queryBusReq.setToStationId("1000000483"); // 1000000483 宁波客运总站
-		queryBusReq.setDepartDateyyyyMMdd("20161010");
+		queryBusReq.setDepartDateyyyyMMdd("20161012");
 		
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPost httpPost;
@@ -111,19 +111,19 @@ public class TJsonServletTest extends TestCase {
 //		authVO = new AuthVO("qua", DigestUtils.md5Hex("qua" + "n1wGXHdP97MSDAu8"));
 		orderBookReq.setAuthVO(authVO);
 		orderBookReq.setIsTestOrder("Y");
-		orderBookReq.setExOrderId("124975326672"/* + System.currentTimeMillis()*/);
-		orderBookReq.setRtOrderId("16061100537101000202");
-		orderBookReq.setPleaveDtyyyyMMddHHmmss("20160611180000");
-		orderBookReq.setTicketCount(2);
-		orderBookReq.setTicketPrice(237);
-		orderBookReq.setTotalPrice(474);
+		orderBookReq.setExOrderId("TEST-20161012001"/* + System.currentTimeMillis()*/);
+		orderBookReq.setRtOrderId("16101200683511000203");
+		orderBookReq.setPleaveDtyyyyMMddHHmmss("20161012173000");
+		orderBookReq.setTicketCount(1);
+		orderBookReq.setTicketPrice(50);
+		orderBookReq.setTotalPrice(50);
 //		orderBookReq.setTicketCount(2);
 //		orderBookReq.setTicketPrice(24);
 //		orderBookReq.setTotalPrice(48);
-		orderBookReq.setUnitId(UnitIdConstants.UNIT_ID_HQCTXZ);
-		orderBookReq.setToStationId("1000000357");	//1000000483
+		orderBookReq.setUnitId(UnitIdConstants.UNIT_ID_HTLKYZ);
+		orderBookReq.setToStationId("1000000924");	//1000000483
 		List<PsgInfo> psgList = new ArrayList<PsgInfo>();
-		psgList.add(new PsgInfo("张晓", "371321198610053919", CertificateType.id, "13918417065"));
+		psgList.add(new PsgInfo("张三", "371321198610053919", CertificateType.id, "13918417065"));
 //		psgList.add(new PsgInfo("孙云翔", "341521200502194832", CertificateType.id, "15189540070"));
 //		psgList.add(new PsgInfo("陈三妹", "362301195311160028", CertificateType.id, "13817360480"));
 		orderBookReq.setPsgList(psgList);
@@ -160,11 +160,12 @@ public class TJsonServletTest extends TestCase {
 //		orderSearchReq.setAuthVO(authVO);
 //		orderSearchReq.setExOrderId("1685847666");
 //		authVO = new AuthVO("tongcheng", DigestUtils.md5Hex("tongcheng" + "s0XjcyEXkhk2qPwF"));
-		authVO = new AuthVO("qua", DigestUtils.md5Hex("qua" + "n1wGXHdP97MSDAu8"));
+//		authVO = new AuthVO("qua", DigestUtils.md5Hex("qua" + "n1wGXHdP97MSDAu8"));
 		orderSearchReq.setAuthVO(authVO);
 //		orderSearchReq.setPsgName("巴士国旅0225");
-		orderSearchReq.setExOrderId("125017065209");
-		orderSearchReq.setIsTestOrder("N");
+//		orderSearchReq.setExOrderId("52016061014234665211347_2");
+		orderSearchReq.setExOrderId("TEST-20161012001");
+		orderSearchReq.setIsTestOrder("Y");
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPost httpPost;
