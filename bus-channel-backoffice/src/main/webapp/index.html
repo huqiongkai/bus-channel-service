@@ -176,9 +176,25 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">汽车票后台管理</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">订单查询</a></li>
+            <li><a href="bookTicketOrder">车票预订</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">退出登录</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  
     <div class="container-fluid container">
-      <div class="row">
-        <div class="main">
+      <div class="row" style="padding-left:15px;padding-right:15px;margin-top:15px;margin-bottom:15px;">
           <h3 class="page-header">订单查询</h3>
           <form class="form-horizontal">
 			  <div class="form-group col-md-4">
@@ -193,7 +209,7 @@
 			      <select class="form-control" id="channelId">
 			      		<option value="0">全部</option>
 			      		<option value="1">淘宝</option>
-			      		<option value="5">同城</option>
+			      		<option value="5">同程</option>
 			      		<option value="4">去哪儿</option>
 			      		<option value="2">携程</option>
 			      		<option value="0">通用渠道</option>
@@ -300,7 +316,7 @@
                   <th>交运订单号</th>
                   <th>取票码</th>
                   <th>出票确认时间</th>
-                  <!-- <th style="display:none">杉德订单号</th> -->
+                  <th style="display:none">杉德订单号</th>
                 </tr>
               </thead>
               <tbody>
@@ -310,7 +326,6 @@
 				<button id="morePageOrdersBtn" class="form-control btn btn-primary" style="width: 200px; margin-bottom: 15px; margin-right: 20px;">查看更多</button>
 			</div>
           </div>
-        </div>
       </div>
     </div>
 

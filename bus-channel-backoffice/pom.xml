@@ -91,11 +91,11 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.6</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.shbus.easybus</groupId>
 			<artifactId>bus-channel-ws-common</artifactId>
 			<version>1.0.1</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
@@ -122,9 +122,9 @@
             <version>${cxf.version}</version>
         </dependency>
         <dependency>
-			<groupId>cn.com.sand</groupId>
+			<groupId>com.shbus.easybus</groupId>
 			<artifactId>sand-ws-client</artifactId>
-			<version>1.0.3</version>
+			<version>1.0.4</version>
 		</dependency>
 
 		<!-- utility dependencies -->
